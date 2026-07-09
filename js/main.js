@@ -130,7 +130,6 @@ document.addEventListener('DOMContentLoaded', function () {
         targetStep.classList.add('active');
       }
       if (step > totalSteps) {
-        // Показать результат
         steps.forEach(function (s) { s.style.display = 'none'; });
         result.style.display = 'block';
         updateResult();
@@ -139,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateResult() {
       var price = '79 000';
-      // Простая логика: если оборот больше 10 млн — цена выше
       if (selectedValues['2'] === '10+') {
         price = '149 000';
       } else if (selectedValues['2'] === '3-10') {
@@ -148,34 +146,28 @@ document.addEventListener('DOMContentLoaded', function () {
       result.querySelector('.calc-price').innerHTML = 'от ' + price + ' ₽ <span>/ мес</span>';
     }
 
-    // Обработчики для каждой группы опций
     calculator.querySelectorAll('.calc-option').forEach(function (opt) {
       opt.addEventListener('click', function () {
         var parentStep = this.closest('.calc-step');
         var step = parseInt(parentStep.dataset.step, 10);
         var value = this.dataset.value;
 
-        // Снимаем выделение с других опций в этом шаге
         parentStep.querySelectorAll('.calc-option').forEach(function (o) {
           o.classList.remove('selected');
         });
         this.classList.add('selected');
 
-        // Сохраняем выбранное значение
         selectedValues[step] = value;
 
-        // Переход к следующему шагу
         if (step < totalSteps) {
           currentStep = step + 1;
           showStep(currentStep);
         } else {
-          // Последний шаг — показываем результат
           showStep(totalSteps + 1);
         }
       });
     });
 
-    // Кнопка "Пройти заново"
     var restartBtn = calculator.querySelector('.calc-restart');
     if (restartBtn) {
       restartBtn.addEventListener('click', function () {
@@ -192,7 +184,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
-    // Показываем первый шаг
     showStep(1);
   }
 
