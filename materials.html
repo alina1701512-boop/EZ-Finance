@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Бесплатные шаблоны для финансового учёта | EZ Finance</title>
+    <meta name="description" content="Скачайте бесплатные шаблоны: ОДДС с дашбордом, ОПиУ, расчёт маржинальности, бухгалтерский баланс. Наведите порядок в финансах бизнеса.">
+    
+    <!-- ===== CANONICAL ===== -->
+    <link rel="canonical" href="https://ezfinance.ru/materials">
+    
+    <!-- ===== PRELOAD & PRECONNECT ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    
+    <!-- ===== SECURITY META ===== -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <!-- ===== OPEN GRAPH ===== -->
+    <meta property="og:title" content="Бесплатные шаблоны для финансового учёта | EZ Finance">
+    <meta property="og:description" content="Скачайте бесплатные шаблоны: ОДДС, ОПиУ, расчёт маржинальности, бухгалтерский баланс.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ezfinance.ru/materials">
+    
+    <!-- ===== FAVICON ===== -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    
+    <link rel="stylesheet" href="css/style.css?v=2.0">
+    
+    <style>
+        /* ===== ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ MATERIALS ===== */
+        .materials-hero {
+            background: #FFFFFF;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding: 40px 0 60px;
+            min-height: auto;
+        }
+        .materials-hero .container {
+            display: block;
+            text-align: center;
+        }
+        .materials-hero h1 {
+            font-size: clamp(32px, 4vw, 48px);
+            margin-bottom: 16px;
+        }
+        .materials-hero p {
+            max-width: 640px;
+            margin: 0 auto;
+            color: #6B6B6B;
+            font-size: 18px;
+        }
+        .materials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 48px;
+        }
+        .material-card {
+            background: #FFFFFF;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 32px;
+            transition: border-color .25s ease, box-shadow .25s ease;
+        }
+        .material-card:hover {
+            border-color: #D4A02B;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .material-card .icon {
+            stroke: #D4A02B;
+            width: 40px;
+            height: 40px;
+            margin-bottom: 16px;
+        }
+        .material-card h3 {
+            font-size: 20px;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+        }
+        .material-card .material-desc {
+            color: #6B6B6B;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        .material-card .material-problem {
+            font-size: 14px;
+            color: #9A9A9A;
+            font-style: italic;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: #F8F6F0;
+            border-radius: 4px;
+        }
+        .material-card .material-screenshots {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 16px 0 20px;
+        }
+        .material-card .material-screenshots .screenshot {
+            background: #F8F6F0;
+            border-radius: 4px;
+            aspect-ratio: 16/10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9A9A9A;
+            font-size: 13px;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .material-card .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: #D4A02B;
+            color: #FFFFFF;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: background .25s ease;
+        }
+        .material-card .btn-download:hover {
+            background: #B8891A;
+        }
+        .material-card .btn-download:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .materials-download-all {
+            text-align: center;
+            margin-top: 48px;
+            padding: 40px;
+            background: #F8F6F0;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+        .materials-download-all .btn {
+            font-size: 18px;
+            padding: 16px 48px;
+        }
+        
+        /* ===== МОДАЛЬНОЕ ОКНО ДЛЯ EMAIL ===== */
+        .email-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+        }
+        .email-modal.active {
+            display: flex;
+        }
+        .email-modal-content {
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 40px;
+            max-width: 480px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        .email-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #9A9A9A;
+            background: none;
+            border: none;
+        }
+        .email-modal-close:hover {
+            color: #1A1A1A;
+        }
+        .email-modal h3 {
+            font-size: 22px;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+        }
+        .email-modal p {
+            color: #6B6B6B;
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+        .email-modal .form-field input {
+            background: #FFFFFF;
+            border: 1px solid rgba(0,0,0,0.12);
+            border-radius: 4px;
+            padding: 12px 16px;
+            width: 100%;
+            font-size: 16px;
+            color: #1A1A1A;
+        }
+        .email-modal .form-field input:focus {
+            border-color: #D4A02B;
+            outline: none;
+        }
+        .email-modal .btn {
+            width: 100%;
+            justify-content: center;
+        }
+        .email-modal .form-note {
+            font-size: 12px;
+            color: #9A9A9A;
+            margin-top: 12px;
+            text-align: center;
+        }
+        .email-modal .form-success-msg {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .email-modal .form-success-msg .icon {
+            margin: 0 auto 16px;
+        }
+        .email-modal .form-success-msg h4 {
+            color: #1A1A1A;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .email-modal .form-success-msg p {
+            color: #6B6B6B;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 720px) {
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            .material-card .material-screenshots {
+                grid-template-columns: 1fr 1fr;
+            }
+            .email-modal-content {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== SKIP-LINK ===== -->
+    <a href="#main-content" class="skip-link" style="position:absolute;top:-9999px;left:50%;transform:translateX(-50%);background:#D4A02B;color:#FFFFFF;padding:12px 24px;border-radius:4px;z-index:9999;font-weight:600;">Перейти к содержанию</a>
+
+    <header class="site-header" role="banner">
+        <div class="container">
+            <a href="/" class="logo" aria-label="EZ Finance — Главная страница">
+                <span class="logo-icon">◆</span>
+                EZ<span class="dot">•</span>FINANCE
+            </a>
+            <nav class="nav" role="navigation" aria-label="Основное меню">
+                <a href="/">Главная</a>
+                <a href="/#services">Услуги</a>
+                <a href="/#pricing">Цены</a>
+                <a href="/materials" class="active" aria-current="page">Материалы</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+            <div class="header-actions">
+                <a href="/#calculator" class="btn">Рассчитать стоимость</a>
+                <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+
+        <!-- ============================================================
+        HERO
+        ============================================================ -->
+        <section class="materials-hero" aria-labelledby="hero-title">
+            <div class="container">
+                <span class="hero-badge" style="display:inline-block;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#D4A02B;font-weight:600;margin-bottom:12px;background:#F8F6F0;padding:4px 16px;border-radius:20px;">Бесплатные материалы</span>
+                <h1 id="hero-title">Готовые шаблоны для финансового учёта</h1>
+                <p>Скачайте профессиональные шаблоны с встроенными дашбордами. Наведите порядок в финансах бизнеса за 15 минут.</p>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        МАТЕРИАЛЫ
+        ============================================================ -->
+        <section class="section" id="materials" aria-labelledby="materials-title">
+            <div class="container">
+                <div class="reveal" style="display:none;">
+                    <span class="eyebrow">Материалы</span>
+                    <h2 id="materials-title" class="section-title section-title-center">Выберите шаблон</h2>
+                </div>
+
+                <div class="materials-grid reveal">
+
+                    <!-- ===== 1. ОДДС ===== -->
+                    <div class="material-card" data-template="odds">
+                        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 28c4-14 10-14 10-22"/><path d="M16 6c4 0 5 4 10 4"/><path d="M22 4l4 6-6 4"/></svg>
+                        <h3>ОДДС с дашбордом</h3>
+                        <p class="material-desc">Отчёт о движении денежных средств покажет реальную картину: откуда приходят и куда уходят деньги в вашем бизнесе.</p>
+                        <div class="material-problem">📌 Прибыль есть, а денег нет? Знакомая ситуация.</div>
+                        <div class="material-screenshots">
+                            <div class="screenshot">📊 Дашборд управления</div>
+                            <div class="screenshot">📋 Структура данных</div>
+                        </div>
+                        <button class="btn-download" data-template="odds">📥 Скачать шаблон</button>
+                    </div>
+
+                    <!-- ===== 2. ОПиУ ===== -->
+                    <div class="material-card" data-template="pl">
+                        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 24l6-8 5 5 11-13"/><path d="M22 8h6v6"/></svg>
+                        <h3>ОПиУ с дашбордом</h3>
+                        <p class="material-desc">Отчёт о прибылях и убытках считает разницу между всеми доходами и расходами. Узнайте чистую прибыль в наглядном графике.</p>
+                        <div class="material-problem">📌 Хотите знать, зарабатывает ли бизнес на самом деле?</div>
+                        <div class="material-screenshots">
+                            <div class="screenshot">📊 Дашборд управления</div>
+                            <div class="screenshot">📋 Структура данных</div>
+                        </div>
+                        <button class="btn-download" data-template="pl">📥 Скачать шаблон</button>
+                    </div>
+
+                    <!-- ===== 3. Маржинальность ===== -->
+                    <div class="material-card" data-template="margin">
+                        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/><path d="M16 9v7l5 3"/></svg>
+                        <h3>Расчёт маржинальности</h3>
+                        <p class="material-desc">Показывает полную себестоимость, прибыль с единицы и процент маржи. Поймите, сколько на самом деле зарабатывает каждая услуга.</p>
+                        <div class="material-problem">📌 Хотите понять реальную прибыльность каждой услуги?</div>
+                        <div class="material-screenshots">
+                            <div class="screenshot">📋 Таблица расчёта</div>
+                            <div class="screenshot">📊 График маржинальности</div>
+                        </div>
+                        <button class="btn-download" data-template="margin">📥 Скачать шаблон</button>
+                    </div>
+
+                    <!-- ===== 4. Бухгалтерский баланс ===== -->
+                    <div class="material-card" data-template="balance">
+                        <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="1"/><path d="M10 10h12M10 15h12M10 20h8"/></svg>
+                        <h3>Бухгалтерский баланс</h3>
+                        <p class="material-desc">Готовая форма со встроенным дашбордом для сведения активов и пассивов. Оцените финансовое здоровье бизнеса.</p>
+                        <div class="material-problem">📌 Хотите увидеть полную картину активов и пассивов?</div>
+                        <div class="material-screenshots">
+                            <div class="screenshot">📊 Дашборд управления</div>
+                            <div class="screenshot">📋 Структура данных</div>
+                        </div>
+                        <button class="btn-download" data-template="balance">📥 Скачать шаблон</button>
+                    </div>
+
+                </div>
+
+                <!-- ===== КНОПКА "СКАЧАТЬ ВСЁ" ===== -->
+                <div class="materials-download-all reveal">
+                    <h3 style="font-size:20px;margin-bottom:8px;">Скачайте все шаблоны сразу</h3>
+                    <p style="color:#6B6B6B;margin-bottom:20px;">Получите полный комплект для финансового учёта вашего бизнеса</p>
+                    <button class="btn" id="downloadAllBtn">📦 Скачать все материалы</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        CTA — ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ
+        ============================================================ -->
+        <section class="section" style="background:#F8F6F0;" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="form-section" style="background:#FFFFFF;border:1px solid rgba(0,0,0,0.06);">
+                    <span class="eyebrow eyebrow-center">Нужна помощь?</span>
+                    <h2 id="cta-title" class="section-title section-title-center">Не знаете, с чего начать?</h2>
+                    <p class="text-gray text-gray-max">Получите бесплатную консультацию по настройке финансового учёта в вашем бизнесе.</p>
+                    <a href="/#cta" class="btn btn-lg">Получить консультацию</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================
+    ФУТЕР
+    ============================================================ -->
+    <footer class="site-footer" id="contacts" role="contentinfo">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col">
+                    <a href="/" class="logo" aria-label="EZ Finance — Главная страница">
+                        <span class="logo-icon">◆</span>
+                        EZ<span class="dot">•</span>FINANCE
+                    </a>
+                    <p class="footer-desc">Финансовый директор на аутсорс. Управленческий учёт, контроль денег и стратегия для бизнеса.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/#services">Услуги</a></li>
+                        <li><a href="/#pricing">Цены</a></li>
+                        <li><a href="/materials" aria-current="page">Материалы</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><a href="mailto:ezfinance@bk.ru">ezfinance@bk.ru</a></li>
+                        <li><a href="tel:+79000000000">+7 (900) 000-00-00</a></li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="https://wa.me/79000000000" aria-label="WhatsApp">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#6B6B6B" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.89.55 3.66 1.5 5.16L2 22l5.16-1.5A9.98 9.98 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/><path d="M8.5 8.5c.2-.4.5-.6.8-.6.3 0 .6 0 .8.4l.6 1.2c.2.4.2.8-.1 1.1l-.3.3c-.2.2-.2.5 0 .8l.8 1.6c.2.4.6.6 1 .4l.5-.2c.3-.2.7-.2 1 .1l1.2.8c.4.3.6.7.6 1.2 0 .4-.2.8-.6 1-1.2.8-2.8 1.2-4.2.6-1.4-.6-2.6-1.8-3.2-3.2-.6-1.4-.2-3 .6-4.2z"/></svg>
+                        </a>
+                        <a href="https://t.me/ezfinance" aria-label="Telegram">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#6B6B6B" stroke-width="1.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        </a>
+                        <a href="tel:+79000000000" aria-label="Позвонить">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#6B6B6B" stroke-width="1.5"><path d="M22 16.9v3a2 2 0 0 1-2.2 2c-8.2-.8-14.9-7.5-15.7-15.7A2 2 0 0 1 6.1 2h3a2 2 0 0 1 2 1.7 23 23 0 0 0 1.3 5.4 2 2 0 0 1-.5 2.1l-1.4 1.4a16 16 0 0 0 4.8 4.8l1.4-1.4a2 2 0 0 1 2.1-.5 23 23 0 0 0 5.4 1.3A2 2 0 0 1 22 16.9z"/></svg>
+                        </a>
+                        <a href="mailto:ezfinance@bk.ru" aria-label="Email">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#6B6B6B" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-legal" style="text-align:center;">
+                    <p class="footer-legal-links">
+                        <a href="privacy.html">Политика конфиденциальности</a> · 
+                        <a href="terms.html">Пользовательское соглашение</a> · 
+                        <a href="consent.html">Согласие на обработку персональных данных</a>
+                    </p>
+                    © 2026 EZ Finance. Все права защищены. Информация на сайте носит ознакомительный характер и не является публичной офертой.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    МОДАЛЬНОЕ ОКНО ДЛЯ EMAIL
+    ============================================================ -->
+    <div class="email-modal" id="emailModal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="email-modal-content">
+            <button class="email-modal-close" aria-label="Закрыть">&times;</button>
+            <div id="modalForm">
+                <h3 id="modal-title">Получить шаблон</h3>
+                <p>Введите email — мы отправим шаблон и наше коммерческое предложение.</p>
+                <form id="emailForm" action="https://formsubmit.co/ezfinance@bk.ru" method="POST">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_subject" value="Запрос шаблона с EZ Finance">
+                    <input type="hidden" name="template" id="templateName" value="">
+                    <div class="form-field">
+                        <input type="email" name="email" id="modalEmail" required placeholder="Ваш email" autofocus>
+                        <span class="field-error" style="font-size:12px;color:#E08A7D;min-height:16px;display:block;"></span>
+                    </div>
+                    <button type="submit" class="btn">📥 Скачать шаблон</button>
+                    <p class="form-note">Нажимая кнопку, вы соглашаетесь на <a href="consent.html">обработку персональных данных</a>.</p>
+                </form>
+            </div>
+            <div class="form-success-msg" id="modalSuccess">
+                <svg class="icon icon-lg" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="M10 16l4 4 8-9"/></svg>
+                <h4>Шаблон отправлен!</h4>
+                <p>Проверьте почту — мы отправили шаблон и коммерческое предложение.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js?v=2.0" defer></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ===== МОДАЛЬНОЕ ОКНО =====
+            var modal = document.getElementById('emailModal');
+            var modalForm = document.getElementById('modalForm');
+            var modalSuccess = document.getElementById('modalSuccess');
+            var closeBtn = modal.querySelector('.email-modal-close');
+            var downloadBtns = document.querySelectorAll('.btn-download');
+            var downloadAllBtn = document.getElementById('downloadAllBtn');
+            var templateName = document.getElementById('templateName');
+
+            function openModal(template) {
+                modal.classList.add('active');
+                modalForm.style.display = 'block';
+                modalSuccess.style.display = 'none';
+                templateName.value = template || 'all';
+                document.getElementById('modalEmail').focus();
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // Закрытие
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            // Кнопки "Скачать шаблон"
+            downloadBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var template = this.dataset.template;
+                    openModal(template);
+                });
+            });
+
+            // Кнопка "Скачать всё"
+            if (downloadAllBtn) {
+                downloadAllBtn.addEventListener('click', function() {
+                    openModal('all');
+                });
+            }
+
+            // ===== ОТПРАВКА ФОРМЫ =====
+            var emailForm = document.getElementById('emailForm');
+            if (emailForm) {
+                emailForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var email = document.getElementById('modalEmail');
+                    var errorEl = email.closest('.form-field').querySelector('.field-error');
+                    var valid = true;
+
+                    if (!email.value.trim()) {
+                        valid = false;
+                        if (errorEl) errorEl.textContent = 'Введите email';
+                    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+                        valid = false;
+                        if (errorEl) errorEl.textContent = 'Введите корректный email';
+                    } else {
+                        if (errorEl) errorEl.textContent = '';
+                    }
+
+                    if (valid) {
+                        var btn = this.querySelector('.btn');
+                        var originalText = btn.textContent;
+                        btn.textContent = 'Отправка...';
+                        btn.disabled = true;
+
+                        var formData = new FormData(this);
+                        fetch(this.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: { 'Accept': 'application/json' }
+                        })
+                        .then(function(response) {
+                            if (response.ok) {
+                                modalForm.style.display = 'none';
+                                modalSuccess.style.display = 'block';
+                            } else {
+                                alert('Ошибка отправки. Попробуйте еще раз.');
+                            }
+                        })
+                        .catch(function() {
+                            alert('Ошибка отправки. Попробуйте еще раз.');
+                        })
+                        .finally(function() {
+                            btn.textContent = originalText;
+                            btn.disabled = false;
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
