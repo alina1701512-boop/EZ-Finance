@@ -18,6 +18,10 @@
   --line: rgba(0,0,0,0.08);
   --line-gold: rgba(212,160,43,0.25);
   --red-dim: #C94A44;
+    /* ===== НОВЫЕ ТЁМНО-СЕРЫЕ ЦВЕТА ===== */
+  --gray-dark: #4A4A4A;
+  --gray-dark-bg: #F0F0F0;
+  --gray-dark-border: #D0D0D0;
 
   --container: 1200px;
   --pad-x: 80px;
@@ -1009,4 +1013,35 @@ p {
   .team-photos { grid-template-columns: 1fr; }
   .calc-options { gap: 8px; }
   .calc-option { padding: 10px 16px; font-size: 14px; }
+}
+/* ============================================================
+   ТЁМНО-СЕРЫЕ ЭЛЕМЕНТЫ
+   ============================================================ */
+.text-gray-dark {
+    color: var(--gray-dark);
+}
+
+.bg-gray-dark {
+    background: var(--gray-dark-bg);
+}
+
+.border-gray-dark {
+    border-color: var(--gray-dark-border);
+}
+
+/* Тёмно-серая рамка для карточек */
+.card-gray {
+    border: 1px solid var(--gray-dark-border);
+    background: var(--bg-card);
+}
+
+/* Тёмно-серый текст для подзаголовков */
+.subtitle-dark {
+    color: var(--gray-dark);
+    font-weight: 500;
+}
+
+/* Тёмно-серая линия */
+.line-dark {
+    border-color: var(--gray-dark-border);
 }
