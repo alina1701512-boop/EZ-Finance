@@ -253,6 +253,9 @@
     <!-- ===== SKIP-LINK ===== -->
     <a href="#main-content" class="skip-link" style="position:absolute;top:-9999px;left:50%;transform:translateX(-50%);background:#D4A02B;color:#FFFFFF;padding:12px 24px;border-radius:4px;z-index:9999;font-weight:600;">Перейти к содержанию</a>
 
+    <!-- ===== ПРОГРЕСС-БАР ===== -->
+    <div class="progress-bar" style="position:fixed;top:0;left:0;height:3px;background:#D4A02B;width:0%;z-index:9999;transition:width 0.1s ease;"></div>
+
     <header class="site-header" role="banner">
         <div class="container">
             <a href="/" class="logo" aria-label="EZ Finance — Главная страница">
@@ -293,9 +296,9 @@
         ============================================================ -->
         <section class="section" id="materials" aria-labelledby="materials-title">
             <div class="container">
-                <div class="reveal" style="display:none;">
+                <div class="reveal">
                     <span class="eyebrow">Материалы</span>
-                    <h2 id="materials-title" class="section-title section-title-center">Выберите шаблон</h2>
+                    <h2 id="materials-title" class="section-title section-title-center">Выберите шаблон для скачивания</h2>
                 </div>
 
                 <div class="materials-grid reveal">
@@ -437,6 +440,28 @@
         </div>
     </footer>
 
+    <!-- ===== МИКРОРАЗМЕТКА ORGANIZATION ===== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "EZ Finance",
+      "description": "Бесплатные шаблоны для финансового учёта.",
+      "url": "https://ezfinance.ru/",
+      "logo": "https://ezfinance.ru/favicon.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+79000000000",
+        "contactType": "sales",
+        "availableLanguage": ["ru"]
+      },
+      "sameAs": [
+        "https://t.me/ezfinance",
+        "https://wa.me/79000000000"
+      ]
+    }
+    </script>
+
     <!-- ============================================================
     МОДАЛЬНОЕ ОКНО ДЛЯ EMAIL
     ============================================================ -->
@@ -494,7 +519,6 @@
                 document.body.style.overflow = '';
             }
 
-            // Закрытие
             closeBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', function(e) {
                 if (e.target === modal) closeModal();
@@ -503,7 +527,6 @@
                 if (e.key === 'Escape') closeModal();
             });
 
-            // Кнопки "Скачать шаблон"
             downloadBtns.forEach(function(btn) {
                 btn.addEventListener('click', function() {
                     var template = this.dataset.template;
@@ -511,7 +534,6 @@
                 });
             });
 
-            // Кнопка "Скачать всё"
             if (downloadAllBtn) {
                 downloadAllBtn.addEventListener('click', function() {
                     openModal('all');
