@@ -1,23 +1,58 @@
 document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
 
-  /* ---------- Mobile menu ---------- */
+  /* ============================================================
+     MOBILE MENU
+     ============================================================ */
   var header = document.querySelector('.site-header');
   var toggle = document.querySelector('.menu-toggle');
-  if (toggle) {
+
+  if (toggle && header) {
+    // Открытие/закрытие меню
     toggle.addEventListener('click', function () {
+      var isOpen = header.classList.contains('nav-open');
       header.classList.toggle('nav-open');
       toggle.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', !isOpen);
     });
+
+    // Закрытие меню при клике на ссылку
     document.querySelectorAll('.nav a').forEach(function (link) {
       link.addEventListener('click', function () {
         header.classList.remove('nav-open');
         toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
       });
+    });
+
+    // Закрытие меню при клике вне его
+    document.addEventListener('click', function (e) {
+      if (header.classList.contains('nav-open')) {
+        var isClickInside = header.contains(e.target);
+        if (!isClickInside) {
+          header.classList.remove('nav-open');
+          toggle.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+
+    // Закрытие меню по Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && header.classList.contains('nav-open')) {
+        header.classList.remove('nav-open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.focus();
+      }
     });
   }
 
-  /* ---------- Scroll reveal ---------- */
+  /* ============================================================
+     SCROLL REVEAL (с debounce)
+     ============================================================ */
   var revealEls = document.querySelectorAll('.reveal');
+
   if ('IntersectionObserver' in window && revealEls.length) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -27,82 +62,157 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-    revealEls.forEach(function (el) { io.observe(el); });
+
+    revealEls.forEach(function (el) {
+      io.observe(el);
+    });
   } else {
-    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+    // Fallback для старых браузеров
+    revealEls.forEach(function (el) {
+      el.classList.add('is-visible');
+    });
   }
 
-  /* ---------- FAQ accordion ---------- */
+  /* ============================================================
+     FAQ ACCORDION
+     ============================================================ */
   document.querySelectorAll('.faq-item').forEach(function (item) {
     var q = item.querySelector('.faq-q');
     var a = item.querySelector('.faq-a');
-    q.addEventListener('click', function () {
-      var isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(function (openItem) {
-        if (openItem !== item) {
-          openItem.classList.remove('open');
-          openItem.querySelector('.faq-a').style.maxHeight = null;
+
+    if (q && a) {
+      q.addEventListener('click', function () {
+        var isOpen = item.classList.contains('open');
+
+        // Закрываем все другие открытые FAQ
+        document.querySelectorAll('.faq-item.open').forEach(function (openItem) {
+          if (openItem !== item) {
+            openItem.classList.remove('open');
+            var openA = openItem.querySelector('.faq-a');
+            if (openA) {
+              openA.style.maxHeight = null;
+            }
+          }
+        });
+
+        if (isOpen) {
+          item.classList.remove('open');
+          a.style.maxHeight = null;
+        } else {
+          item.classList.add('open');
+          a.style.maxHeight = a.scrollHeight + 'px';
         }
       });
-      if (isOpen) {
-        item.classList.remove('open');
-        a.style.maxHeight = null;
-      } else {
-        item.classList.add('open');
-        a.style.maxHeight = a.scrollHeight + 'px';
-      }
-    });
+
+      // Доступность: Enter и Space
+      q.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          q.click();
+        }
+      });
+    }
   });
 
-  /* ---------- Form validation ---------- */
+  /* ============================================================
+     FORM VALIDATION
+     ============================================================ */
   document.querySelectorAll('form[data-validate]').forEach(function (form) {
+    // Валидация на blur
+    form.querySelectorAll('[required]').forEach(function (field) {
+      field.addEventListener('blur', function () {
+        validateField(field);
+      });
+
+      field.addEventListener('input', function () {
+        // Очищаем ошибку при вводе
+        field.style.borderColor = '';
+        var errorEl = field.closest('.form-field').querySelector('.field-error');
+        if (errorEl) {
+          errorEl.textContent = '';
+        }
+      });
+    });
+
+    // Отправка формы
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
       var valid = true;
 
+      // Валидация всех полей
       form.querySelectorAll('[required]').forEach(function (field) {
-        var errorEl = field.closest('.form-field').querySelector('.field-error');
-        var value = field.value.trim();
-        var fieldValid = true;
-
-        if (!value) {
-          fieldValid = false;
-        } else if (field.type === 'tel') {
-          var digits = value.replace(/\D/g, '');
-          if (digits.length < 10) fieldValid = false;
-        } else if (field.type === 'email') {
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) fieldValid = false;
-        }
-
-        if (!fieldValid) {
+        if (!validateField(field)) {
           valid = false;
-          field.style.borderColor = '#E08A7D';
-          if (errorEl) errorEl.textContent = field.type === 'email'
-            ? 'Введите корректный email'
-            : field.type === 'tel'
-              ? 'Введите корректный телефон'
-              : 'Заполните это поле';
-        } else {
-          field.style.borderColor = '';
-          if (errorEl) errorEl.textContent = '';
         }
       });
 
       if (valid) {
-        var wrap = form.closest('.form-wrap');
-        var success = wrap.parentElement.querySelector('.form-success');
-        form.style.display = 'none';
-        if (success) success.classList.add('show');
-      }
-    });
+        // Показываем индикатор загрузки
+        var submitBtn = form.querySelector('button[type="submit"]');
+        var originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Отправка...';
+        submitBtn.disabled = true;
 
-    form.querySelectorAll('input, select').forEach(function (field) {
-      field.addEventListener('input', function () {
-        field.style.borderColor = '';
-        var errorEl = field.closest('.form-field').querySelector('.field-error');
-        if (errorEl) errorEl.textContent = '';
-      });
+        // Имитация отправки (заменить на реальный AJAX)
+        setTimeout(function () {
+          var wrap = form.closest('.form-wrap');
+          var success = wrap ? wrap.parentElement.querySelector('.form-success') : null;
+
+          if (wrap) {
+            form.style.display = 'none';
+          }
+
+          if (success) {
+            success.classList.add('show');
+          }
+
+          // Восстанавливаем кнопку
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }, 1200);
+      }
     });
   });
 
+  /* ============================================================
+     ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+     ============================================================ */
+  function validateField(field) {
+    var errorEl = field.closest('.form-field').querySelector('.field-error');
+    var value = field.value.trim();
+    var fieldValid = true;
+    var errorMessage = '';
+
+    if (!value) {
+      fieldValid = false;
+      errorMessage = 'Заполните это поле';
+    } else if (field.type === 'tel') {
+      var digits = value.replace(/\D/g, '');
+      if (digits.length < 10) {
+        fieldValid = false;
+        errorMessage = 'Введите корректный телефон';
+      }
+    } else if (field.type === 'email') {
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        fieldValid = false;
+        errorMessage = 'Введите корректный email';
+      }
+    }
+
+    if (!fieldValid) {
+      field.style.borderColor = '#E08A7D';
+      if (errorEl) {
+        errorEl.textContent = errorMessage;
+      }
+    } else {
+      field.style.borderColor = '';
+      if (errorEl) {
+        errorEl.textContent = '';
+      }
+    }
+
+    return fieldValid;
+  }
 });
