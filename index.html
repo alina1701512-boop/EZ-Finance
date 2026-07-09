@@ -6,19 +6,52 @@
     <title>Финансовый директор на аутсорс | EZ Finance — Ваш отдел финансов за 1/6 стоимости</title>
     <meta name="description" content="Команда с опытом Ernst &amp; Young, KPMG и Газпромбанка. Внедряем управленческий учет с нуля. Экономия до 6,6 млн руб. в год. Диагностика финансов.">
     
-    <!-- Open Graph -->
+    <!-- ===== CANONICAL ===== -->
+    <link rel="canonical" href="https://ezfinance.ru/">
+    
+    <!-- ===== PRELOAD & PRECONNECT ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    
+    <!-- ===== SECURITY META ===== -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data: https:;
+        connect-src 'self' https://formsubmit.co;
+        frame-ancestors 'none';
+        base-uri 'self';
+        form-action 'self';
+    ">
+    
+    <!-- ===== HSTS (только для HTTPS) ===== -->
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+    
+    <!-- ===== OPEN GRAPH ===== -->
     <meta property="og:title" content="Финансовый директор на аутсорс | EZ Finance">
     <meta property="og:description" content="Команда с опытом Ernst &amp; Young, KPMG и Газпромбанка. Внедряем управленческий учет с нуля. Экономия до 6,6 млн руб. в год.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ezfinance.ru/">
+    <meta property="og:image" content="https://ezfinance.fr/og-image.jpg">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
+    <!-- ===== BREADCRUMBS MICRODATA ===== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://ezfinance.ru/" }
+      ]
+    }
+    </script>
     
-    <link rel="stylesheet" href="css/style.css?v=1.0">
-    
+    <!-- ===== FAQ MICRODATA ===== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -51,8 +84,18 @@
       ]
     }
     </script>
+    
+    <!-- ===== FAVICON ===== -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    
+    <link rel="stylesheet" href="css/style.css?v=1.1">
 </head>
 <body>
+
+    <!-- ===== SKIP-LINK ===== -->
+    <a href="#main-content" class="skip-link" style="position:absolute;top:-9999px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);padding:12px 24px;border-radius:var(--radius-sm);z-index:9999;font-weight:600;">Перейти к содержанию</a>
 
     <header class="site-header" role="banner">
         <div class="container">
@@ -62,6 +105,7 @@
             <nav class="nav" role="navigation" aria-label="Основное меню">
                 <a href="/" class="active" aria-current="page">Главная</a>
                 <a href="#contacts">Контакты</a>
+                <a href="/partners">Партнерам</a>
             </nav>
             <div class="header-actions">
                 <a href="#cta" class="btn">Получить контроль</a>
@@ -72,7 +116,7 @@
         </div>
     </header>
 
-    <main role="main">
+    <main id="main-content" role="main">
 
         <!-- HERO -->
         <section class="hero" aria-labelledby="hero-title">
@@ -358,10 +402,20 @@
                     <p class="text-gray text-gray-max">Оставьте заявку — мы покажем 3 точки роста вашей прибыли на диагностике.</p>
 
                     <div class="form-wrap">
-                        <form data-validate novalidate>
+                        <!-- ===== ФОРМА С REAL SUBMIT ===== -->
+                        <form data-validate novalidate action="https://formsubmit.co/ezfinance@bk.ru" method="POST">
+                            
+                            <!-- ===== CSRF ЗАЩИТА (скрытый токен) ===== -->
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_subject" value="Новая заявка с EZ Finance">
+                            
+                            <!-- ===== RATE LIMITING (время отправки) ===== -->
+                            <input type="hidden" name="_form_time" value="" class="form-time">
+                            
                             <div class="form-field">
                                 <label for="name">Имя *</label>
-                                <input type="text" id="name" name="name" required placeholder="Как к вам обращаться">
+                                <input type="text" id="name" name="name" required placeholder="Как к вам обращаться" autofocus>
                                 <span class="field-error"></span>
                             </div>
                             <div class="form-field">
@@ -382,9 +436,19 @@
                                 <span class="field-error"></span>
                             </div>
                             
-                            <button type="submit" class="btn btn-block">Заказать диагностику</button>
+                            <!-- ===== КНОПКА С ИНДИКАТОРОМ ЗАГРУЗКИ ===== -->
+                            <button type="submit" class="btn btn-block" id="submitBtn">
+                                <span class="btn-text">Заказать диагностику</span>
+                                <span class="btn-loader" style="display:none;">
+                                    <svg viewBox="0 0 50 50" style="width:24px;height:24px;animation:spin 0.8s linear infinite;">
+                                        <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="90 150" stroke-linecap="round"/>
+                                    </svg>
+                                </span>
+                            </button>
+                            
                             <p class="form-note">Нажимая кнопку, вы соглашаетесь на <a href="consent.html">обработку персональных данных</a>.</p>
                         </form>
+                        
                         <div class="form-success">
                             <svg class="icon icon-lg" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="M10 16l4 4 8-9"/></svg>
                             <h3>Заявка принята</h3>
@@ -409,6 +473,7 @@
                     <ul>
                         <li><a href="/" aria-current="page">Главная</a></li>
                         <li><a href="#contacts">Контакты</a></li>
+                        <li><a href="/partners">Партнерам</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -431,6 +496,6 @@
         </div>
     </footer>
 
-    <script src="js/main.js?v=1.0" defer></script>
+    <script src="js/main.js?v=1.1" defer></script>
 </body>
 </html>
