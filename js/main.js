@@ -108,10 +108,25 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* ============================================================
-     FORM VALIDATION + HONEYPOT
+     FORM VALIDATION + HONEYPOT + RATE LIMITING + SPINNER
      ============================================================ */
   document.querySelectorAll('form[data-validate]').forEach(function (form) {
-    // Валидация на blur
+    
+    // ===== RATE LIMITING: устанавливаем время отправки =====
+    var timeField = form.querySelector('._form_time');
+    if (timeField) {
+      timeField.value = Date.now();
+    }
+
+    // ===== АВТОФОКУС на первое поле =====
+    var firstInput = form.querySelector('input:not([type="hidden"])');
+    if (firstInput) {
+      setTimeout(function () {
+        firstInput.focus();
+      }, 500);
+    }
+
+    // ===== Валидация на blur =====
     form.querySelectorAll('[required]').forEach(function (field) {
       field.addEventListener('blur', function () {
         validateField(field);
@@ -126,13 +141,36 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    // Отправка формы
+    // ===== ОТПРАВКА ФОРМЫ =====
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
       var valid = true;
+      var submitBtn = form.querySelector('#submitBtn');
+      var btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
+      var btnLoader = submitBtn ? submitBtn.querySelector('.btn-loader') : null;
 
-      // Валидация всех обязательных полей
+      // ===== RATE LIMITING: проверяем время =====
+      if (timeField) {
+        var submitTime = Date.now();
+        var formTime = parseInt(timeField.value, 10);
+        var timeDiff = submitTime - formTime;
+        
+        // Если форма отправлена менее чем через 5 секунд после загрузки — это бот
+        if (timeDiff < 5000) {
+          valid = false;
+          var rateError = form.querySelector('.rate-error');
+          if (!rateError) {
+            var errorDiv = document.createElement('div');
+            errorDiv.className = 'rate-error';
+            errorDiv.style.cssText = 'color:#E08A7D;font-size:13px;margin-top:8px;text-align:center;';
+            errorDiv.textContent = 'Пожалуйста, подождите несколько секунд перед отправкой.';
+            form.appendChild(errorDiv);
+          }
+        }
+      }
+
+      // ===== Валидация всех обязательных полей =====
       form.querySelectorAll('[required]').forEach(function (field) {
         if (!validateField(field)) {
           valid = false;
@@ -142,7 +180,6 @@ document.addEventListener('DOMContentLoaded', function () {
       // ===== HONEYPOT ПРОВЕРКА =====
       var honeypot = form.querySelector('input[name="website"]');
       if (honeypot && honeypot.value.trim() !== '') {
-        // Это бот! Отклоняем отправку
         valid = false;
         honeypot.style.borderColor = '#E08A7D';
         var errorEl = honeypot.closest('.form-field').querySelector('.field-error');
@@ -152,26 +189,59 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       if (valid) {
-        var submitBtn = form.querySelector('button[type="submit"]');
-        var originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Отправка...';
-        submitBtn.disabled = true;
+        // ===== ПОКАЗЫВАЕМ ИНДИКАТОР ЗАГРУЗКИ =====
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          if (btnText) btnText.style.display = 'none';
+          if (btnLoader) btnLoader.style.display = 'inline-block';
+        }
 
-        setTimeout(function () {
-          var wrap = form.closest('.form-wrap');
-          var success = wrap ? wrap.parentElement.querySelector('.form-success') : null;
-
-          if (wrap) {
-            form.style.display = 'none';
+        // ===== РЕАЛЬНАЯ ОТПРАВКА через FormSubmit =====
+        var formData = new FormData(form);
+        
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
           }
-
-          if (success) {
-            success.classList.add('show');
+        })
+        .then(function (response) {
+          if (response.ok) {
+            // Успешно отправлено
+            var wrap = form.closest('.form-wrap');
+            var success = wrap ? wrap.parentElement.querySelector('.form-success') : null;
+            
+            if (wrap) {
+              form.style.display = 'none';
+            }
+            
+            if (success) {
+              success.classList.add('show');
+            }
+          } else {
+            // Ошибка отправки
+            alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.');
           }
+        })
+        .catch(function () {
+          alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз или свяжитесь с нами по телефону.');
+        })
+        .finally(function () {
+          // Восстанавливаем кнопку
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            if (btnText) btnText.style.display = 'inline-block';
+            if (btnLoader) btnLoader.style.display = 'none';
+          }
+        });
 
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-        }, 1200);
+      } else {
+        // Если есть ошибка валидации — скроллим к первому полю с ошибкой
+        var firstError = form.querySelector('[style*="border-color: #E08A7D"]');
+        if (firstError) {
+          firstError.focus();
+        }
       }
     });
   });
@@ -216,4 +286,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
     return fieldValid;
   }
+
+  /* ============================================================
+     ПОДСВЕТКА АКТИВНОЙ ССЫЛКИ В МОБИЛЬНОМ МЕНЮ
+     ============================================================ */
+  var currentPath = window.location.pathname;
+  document.querySelectorAll('.nav a').forEach(function (link) {
+    var href = link.getAttribute('href');
+    if (href === currentPath || (href === '/' && currentPath === '/')) {
+      link.classList.add('active');
+    }
+  });
+
+  /* ============================================================
+     SKIP-LINK: показываем при фокусе
+     ============================================================ */
+  var skipLink = document.querySelector('.skip-link');
+  if (skipLink) {
+    skipLink.addEventListener('focus', function () {
+      this.style.top = '20px';
+    });
+    skipLink.addEventListener('blur', function () {
+      this.style.top = '-9999px';
+    });
+  }
 });
+
+// ===== CSS ДЛЯ СПИННЕРА =====
+var style = document.createElement('style');
+style.textContent = `
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .btn-loader svg {
+    vertical-align: middle;
+  }
+`;
+document.head.appendChild(style);
