@@ -1,0 +1,35 @@
+User-agent: *
+Allow: /
+
+Disallow: /404.html
+Disallow: /css/
+Disallow: /js/
+Disallow: /images/
+Disallow: /partners
+
+Sitemap: https://ezfinance.ru/sitemap.xml
+
+Host: https://ezfinance.ru
+
+Crawl-delay: 1
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: EmailCollector
+Disallow: /
+
+User-agent: EmailSiphon
+Disallow: /
+
+User-agent: HTTrack
+Disallow: /
+
+User-agent: SiteSucker
+Disallow: /
