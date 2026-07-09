@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var toggle = document.querySelector('.menu-toggle');
 
   if (toggle && header) {
-    // Открытие/закрытие меню
     toggle.addEventListener('click', function () {
       var isOpen = header.classList.contains('nav-open');
       header.classList.toggle('nav-open');
@@ -16,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
       toggle.setAttribute('aria-expanded', !isOpen);
     });
 
-    // Закрытие меню при клике на ссылку
     document.querySelectorAll('.nav a').forEach(function (link) {
       link.addEventListener('click', function () {
         header.classList.remove('nav-open');
@@ -25,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    // Закрытие меню при клике вне его
     document.addEventListener('click', function (e) {
       if (header.classList.contains('nav-open')) {
         var isClickInside = header.contains(e.target);
@@ -37,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 
-    // Закрытие меню по Escape
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && header.classList.contains('nav-open')) {
         header.classList.remove('nav-open');
@@ -49,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ============================================================
-     SCROLL REVEAL (с debounce)
+     SCROLL REVEAL
      ============================================================ */
   var revealEls = document.querySelectorAll('.reveal');
 
@@ -67,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
       io.observe(el);
     });
   } else {
-    // Fallback для старых браузеров
     revealEls.forEach(function (el) {
       el.classList.add('is-visible');
     });
@@ -84,7 +79,6 @@ document.addEventListener('DOMContentLoaded', function () {
       q.addEventListener('click', function () {
         var isOpen = item.classList.contains('open');
 
-        // Закрываем все другие открытые FAQ
         document.querySelectorAll('.faq-item.open').forEach(function (openItem) {
           if (openItem !== item) {
             openItem.classList.remove('open');
@@ -104,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
 
-      // Доступность: Enter и Space
       q.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -115,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* ============================================================
-     FORM VALIDATION
+     FORM VALIDATION + HONEYPOT
      ============================================================ */
   document.querySelectorAll('form[data-validate]').forEach(function (form) {
     // Валидация на blur
@@ -125,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       field.addEventListener('input', function () {
-        // Очищаем ошибку при вводе
         field.style.borderColor = '';
         var errorEl = field.closest('.form-field').querySelector('.field-error');
         if (errorEl) {
@@ -140,21 +132,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
       var valid = true;
 
-      // Валидация всех полей
+      // Валидация всех обязательных полей
       form.querySelectorAll('[required]').forEach(function (field) {
         if (!validateField(field)) {
           valid = false;
         }
       });
 
+      // ===== HONEYPOT ПРОВЕРКА =====
+      var honeypot = form.querySelector('input[name="website"]');
+      if (honeypot && honeypot.value.trim() !== '') {
+        // Это бот! Отклоняем отправку
+        valid = false;
+        honeypot.style.borderColor = '#E08A7D';
+        var errorEl = honeypot.closest('.form-field').querySelector('.field-error');
+        if (errorEl) {
+          errorEl.textContent = 'Обнаружена подозрительная активность';
+        }
+      }
+
       if (valid) {
-        // Показываем индикатор загрузки
         var submitBtn = form.querySelector('button[type="submit"]');
         var originalText = submitBtn.textContent;
         submitBtn.textContent = 'Отправка...';
         submitBtn.disabled = true;
 
-        // Имитация отправки (заменить на реальный AJAX)
         setTimeout(function () {
           var wrap = form.closest('.form-wrap');
           var success = wrap ? wrap.parentElement.querySelector('.form-success') : null;
@@ -167,7 +169,6 @@ document.addEventListener('DOMContentLoaded', function () {
             success.classList.add('show');
           }
 
-          // Восстанавливаем кнопку
           submitBtn.textContent = originalText;
           submitBtn.disabled = false;
         }, 1200);
