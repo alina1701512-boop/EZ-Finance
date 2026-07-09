@@ -7,39 +7,256 @@
     <meta name="description" content="Закрывайте финансовые вопросы клиентов под своим брендом. Работаем White Label. Ежемесячная комиссия. Без конкуренции и лишней работы.">
     <meta name="robots" content="noindex, nofollow">
     
-    <!-- Open Graph -->
+    <!-- ===== CANONICAL ===== -->
+    <link rel="canonical" href="https://ezfinance.ru/partners">
+    
+    <!-- ===== PRELOAD & PRECONNECT ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    
+    <!-- ===== SECURITY META ===== -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <!-- ===== OPEN GRAPH ===== -->
     <meta property="og:title" content="Партнерская программа | EZ Finance">
     <meta property="og:description" content="Закрывайте финансовые вопросы клиентов под своим брендом. Работаем White Label.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ezfinance.ru/partners">
     
-    <!-- Favicon -->
+    <!-- ===== FAVICON ===== -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
     
-    <link rel="stylesheet" href="css/style.css?v=1.0">
+    <link rel="stylesheet" href="css/style.css?v=2.0">
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://ezfinance.ru/" },
-        { "@type": "ListItem", "position": 2, "name": "Партнерам", "item": "https://ezfinance.ru/partners" }
-      ]
-    }
-    </script>
+    <style>
+        /* ===== ДОПОЛНИТЕЛЬНЫЕ СТИЛИ ДЛЯ PARTNERS ===== */
+        .partners-hero {
+            background: #FFFFFF;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+        .partners-hero .hero-figure-label {
+            color: #6B6B6B;
+        }
+        .partners-hero .hero-figure sup {
+            color: #9A9A9A;
+        }
+        .partners-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .partner-card {
+            background: #FFFFFF;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 32px;
+            transition: border-color .25s ease, box-shadow .25s ease;
+        }
+        .partner-card:hover {
+            border-color: #D4A02B;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        .partner-card .icon {
+            stroke: #D4A02B;
+        }
+        .partner-card h3 {
+            color: #1A1A1A;
+            font-size: 18px;
+            margin: 16px 0 10px;
+        }
+        .partner-card p {
+            color: #6B6B6B;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .partner-steps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+            position: relative;
+        }
+        .partner-steps::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: rgba(0,0,0,0.08);
+        }
+        .partner-step {
+            position: relative;
+            padding-top: 60px;
+            text-align: center;
+        }
+        .partner-step-num {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid #D4A02B;
+            color: #D4A02B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            background: #FFFFFF;
+            z-index: 2;
+        }
+        .partner-step h3 {
+            font-size: 16px;
+            color: #1A1A1A;
+            margin-bottom: 8px;
+        }
+        .partner-step p {
+            color: #6B6B6B;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .partner-income {
+            border: 1px solid rgba(212,160,43,0.25);
+            border-radius: 8px;
+            padding: 60px 40px;
+            text-align: center;
+            background: #F8F6F0;
+        }
+        .partner-income-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 32px 0;
+        }
+        .partner-income-flow .node {
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 4px;
+            padding: 14px 24px;
+            color: #6B6B6B;
+            background: #FFFFFF;
+        }
+        .partner-income-flow .node.gold {
+            border-color: #D4A02B;
+            color: #D4A02B;
+            background: rgba(212,160,43,0.04);
+        }
+        .partner-income-flow .arrow {
+            color: #9A9A9A;
+            font-size: 20px;
+        }
+        .partner-income-conclusion {
+            color: #6B6B6B;
+            max-width: 560px;
+            margin: 0 auto;
+            font-size: 15px;
+        }
+        .partner-wl {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 40px 32px;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 8px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            background: #FFFFFF;
+        }
+        .partner-wl-node {
+            flex: 1;
+            min-width: 140px;
+            text-align: center;
+            padding: 20px 16px;
+            border-radius: 4px;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+        .partner-wl-node.you {
+            border-color: #D4A02B;
+            background: rgba(212,160,43,0.04);
+        }
+        .partner-wl-node.us {
+            opacity: 0.5;
+            border-style: dashed;
+        }
+        .partner-wl-node-label {
+            font-size: 12px;
+            color: #9A9A9A;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+        }
+        .partner-wl-node-title {
+            font-weight: 700;
+            font-size: 15px;
+            color: #1A1A1A;
+        }
+        .partner-wl-arrow {
+            color: #9A9A9A;
+            font-size: 20px;
+        }
+        
+        @media (max-width: 1080px) {
+            .partners-grid-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .partner-steps {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .partner-steps::before {
+                display: none;
+            }
+        }
+        @media (max-width: 720px) {
+            .partners-grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .partner-steps {
+                grid-template-columns: 1fr;
+            }
+            .partner-wl {
+                flex-direction: column;
+            }
+            .partner-wl-arrow {
+                transform: rotate(90deg);
+            }
+            .partner-income {
+                padding: 32px 20px;
+            }
+            .partner-income-flow {
+                flex-direction: column;
+            }
+            .partner-income-flow .arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
 </head>
 <body>
+
+    <!-- ===== SKIP-LINK ===== -->
+    <a href="#main-content" class="skip-link" style="position:absolute;top:-9999px;left:50%;transform:translateX(-50%);background:#D4A02B;color:#FFFFFF;padding:12px 24px;border-radius:4px;z-index:9999;font-weight:600;">Перейти к содержанию</a>
 
     <header class="site-header" role="banner">
         <div class="container">
             <a href="/" class="logo" aria-label="EZ Finance — Главная страница">
+                <span class="logo-icon">◆</span>
                 EZ<span class="dot">•</span>FINANCE
             </a>
             <nav class="nav" role="navigation" aria-label="Основное меню">
                 <a href="/">Главная</a>
+                <a href="/#services">Услуги</a>
+                <a href="/#pricing">Цены</a>
+                <a href="/materials">Материалы</a>
                 <a href="#contacts">Контакты</a>
             </nav>
             <div class="header-actions">
@@ -51,146 +268,160 @@
         </div>
     </header>
 
-    <main role="main">
+    <main id="main-content" role="main">
 
-        <!-- HERO -->
-        <section class="hero" aria-labelledby="hero-title">
+        <!-- ============================================================
+        HERO
+        ============================================================ -->
+        <section class="hero partners-hero" aria-labelledby="hero-title">
             <div class="hero-grid-deco" aria-hidden="true"></div>
             <div class="container">
                 <div class="hero-copy">
+                    <span class="hero-badge">Партнёрство White Label</span>
                     <h1 id="hero-title">Ваши клиенты нуждаются в финансах. <em>Зарабатывайте на этом</em> без лишней работы.</h1>
                     <div class="hero-rule" aria-hidden="true"></div>
                     <p class="hero-sub">Партнёрская программа для бухгалтеров, налоговых консультантов и юристов. Клиенты и так спрашивают вас о кассовых разрывах, отказах банков и финансовой стратегии — превратите эти вопросы в дополнительный доход.</p>
-                    <a href="#cta" class="btn">Стать партнером</a>
+                    <a href="#cta" class="btn btn-lg">Стать партнером</a>
                 </div>
 
                 <div class="hero-visual">
-                    <svg class="icon" viewBox="0 0 32 32" style="width:min(320px,90%);height:auto;stroke-width:1" aria-hidden="true">
-                        <circle cx="11" cy="12" r="5"/>
-                        <circle cx="23" cy="12" r="5"/>
-                        <path d="M4 27c0-4.4 3.1-8 7-8s7 3.6 7 8"/>
-                        <path d="M16 27c0-4.4 3.1-8 7-8s7 3.6 7 8"/>
-                        <path d="M14.5 12h5"/>
+                    <svg class="icon" viewBox="0 0 32 32" style="width:min(320px,90%);height:auto;stroke-width:1;stroke:#D4A02B;" aria-hidden="true">
+                        <circle cx="11" cy="12" r="5" fill="none" stroke="#D4A02B" stroke-width="1.4"/>
+                        <circle cx="23" cy="12" r="5" fill="none" stroke="#D4A02B" stroke-width="1.4"/>
+                        <path d="M4 27c0-4.4 3.1-8 7-8s7 3.6 7 8" fill="none" stroke="#D4A02B" stroke-width="1.4"/>
+                        <path d="M16 27c0-4.4 3.1-8 7-8s7 3.6 7 8" fill="none" stroke="#D4A02B" stroke-width="1.4"/>
+                        <path d="M14.5 12h5" fill="none" stroke="#D4A02B" stroke-width="1.4"/>
                     </svg>
-                    <div class="hero-figure-label" style="margin-top:24px">Партнёрство White Label</div>
+                    <div class="hero-figure-label" style="margin-top:24px;">Партнёрство White Label</div>
                 </div>
             </div>
         </section>
 
-        <!-- HOW IT WORKS -->
+        <!-- ============================================================
+        КАК ЭТО РАБОТАЕТ
+        ============================================================ -->
         <section class="section" aria-labelledby="steps-title">
             <div class="container">
                 <div class="reveal">
                     <span class="eyebrow">Механика</span>
-                    <h2 id="steps-title" class="section-title">Как это работает</h2>
+                    <h2 id="steps-title" class="section-title section-title-center">Как это работает</h2>
+                    <p class="section-subtitle">Пять простых шагов к дополнительному доходу</p>
                 </div>
-                <div class="steps-track reveal">
-                    <div class="step-item">
-                        <span class="step-num">1</span>
+                <div class="partner-steps reveal">
+                    <div class="partner-step">
+                        <span class="partner-step-num">1</span>
                         <h3>Клиент задаёт вопрос</h3>
-                        <p>Кассовый разрыв, отказ банка, потребность в стратегии, сложности с управленческим учётом.</p>
+                        <p>Кассовый разрыв, отказ банка, потребность в стратегии.</p>
                     </div>
-                    <div class="step-item">
-                        <span class="step-num">2</span>
+                    <div class="partner-step">
+                        <span class="partner-step-num">2</span>
                         <h3>Вы предлагаете решение</h3>
-                        <p>Как расширение ваших услуг. Клиент остаётся с вами, вы выглядите экспертом, закрывающим любую задачу.</p>
+                        <p>Как расширение ваших услуг. Клиент остаётся с вами.</p>
                     </div>
-                    <div class="step-item">
-                        <span class="step-num">3</span>
+                    <div class="partner-step">
+                        <span class="partner-step-num">3</span>
                         <h3>Вы передаёте контакт нам</h3>
-                        <p>Коротко, в почте или звонком. Мы уже знаем контекст и готовы работать.</p>
+                        <p>Коротко — в почте или звонком. Мы готовы работать.</p>
                     </div>
-                    <div class="step-item">
-                        <span class="step-num">4</span>
+                    <div class="partner-step">
+                        <span class="partner-step-num">4</span>
                         <h3>Работаем под вашим брендом</h3>
-                        <p>White Label — клиент не знает о нас. Все отчёты, презентации и коммуникация — от вашего имени.</p>
+                        <p>White Label — клиент не знает о нас. Всё от вашего имени.</p>
                     </div>
-                    <div class="step-item">
-                        <span class="step-num">5</span>
+                    <div class="partner-step">
+                        <span class="partner-step-num">5</span>
                         <h3>Вы получаете комиссию</h3>
-                        <p>Ежемесячно, прозрачно, без задержек и сюрпризов. Пока клиент с нами — вы получаете доход.</p>
+                        <p>Ежемесячно, прозрачно, без задержек и сюрпризов.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- WHY PROFITABLE -->
-        <section class="section" aria-labelledby="profit-title">
+        <!-- ============================================================
+        ПОЧЕМУ ЭТО ВЫГОДНО
+        ============================================================ -->
+        <section class="section" style="background:#F8F6F0;" aria-labelledby="profit-title">
             <div class="container">
                 <div class="reveal">
                     <span class="eyebrow">Возражения</span>
-                    <h2 id="profit-title" class="section-title">Почему это выгодно вам?</h2>
+                    <h2 id="profit-title" class="section-title section-title-center">Почему это выгодно вам?</h2>
                 </div>
-                <div class="grid-4 reveal">
-                    <div class="card-bordered">
+                <div class="partners-grid-4 reveal">
+                    <div class="partner-card">
                         <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="8" y="14" width="16" height="12" rx="1"/><path d="M12 14v-4a4 4 0 0 1 8 0v4"/></svg>
                         <h3>Не заберём клиентов</h3>
-                        <p>Мы работаем в модели White Label. Вы остаётесь для клиента главным консультантом, мы — на втором плане.</p>
+                        <p>Мы работаем в модели White Label. Вы остаётесь главным консультантом.</p>
                     </div>
-                    <div class="card-bordered">
+                    <div class="partner-card">
                         <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="13" r="6"/><path d="M16 19v9M12 24l-3 4M20 24l3 4"/></svg>
-                        <h3>Вы укрепляете экспертность</h3>
-                        <p>Клиент видит, что вы закрываете любую его потребность, а не бросаете его с вопросом вне вашей компетенции.</p>
+                        <h3>Укрепляете экспертность</h3>
+                        <p>Клиент видит, что вы закрываете любую его потребность.</p>
                     </div>
-                    <div class="card-bordered">
+                    <div class="partner-card">
                         <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/><path d="M16 9v7l5 3"/></svg>
                         <h3>Ноль часов вашего времени</h3>
-                        <p>Всю операционную работу берём на себя. Вы только передаёте контакт — дальше подключаемся мы.</p>
+                        <p>Всю операционную работу берём на себя. Вы только передаёте контакт.</p>
                     </div>
-                    <div class="card-bordered">
+                    <div class="partner-card">
                         <svg class="icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4l10 4v8c0 7-4.5 11-10 12-5.5-1-10-5-10-12V8l10-4z"/><path d="M12 16l3 3 6-6"/></svg>
                         <h3>Прозрачность и доверие</h3>
-                        <p>Команда EZ Finance — опыт Big4 и Газпромбанка. Мы держим вас в курсе каждого шага.</p>
+                        <p>Команда EZ Finance — опыт Big4. Держим вас в курсе каждого шага.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- INCOME EXAMPLE -->
+        <!-- ============================================================
+        ПРИМЕР ДОХОДА
+        ============================================================ -->
         <section class="section" aria-labelledby="income-title">
             <div class="container">
-                <div class="income-block reveal">
+                <div class="partner-income reveal">
                     <span class="eyebrow eyebrow-center">Пример дохода</span>
                     <h2 id="income-title" class="section-title section-title-center">Сколько вы можете зарабатывать</h2>
-                    <div class="income-flow">
+                    <div class="partner-income-flow">
                         <div class="node">Клиент подключает сопровождение — 100 000 ₽/мес</div>
                         <span class="arrow" aria-hidden="true">→</span>
                         <div class="node gold">Ваша комиссия — обсуждается индивидуально</div>
                     </div>
-                    <p class="income-conclusion">Вывод: вы получаете ежемесячный пассивный доход, не нанимая финдиректора в свой штат и не расширяя свою экспертизу.</p>
+                    <p class="partner-income-conclusion">Вывод: вы получаете ежемесячный пассивный доход, не нанимая финдиректора в штат и не расширяя свою экспертизу.</p>
                 </div>
             </div>
         </section>
 
-        <!-- WHITE LABEL -->
-        <section class="section" aria-labelledby="wl-title">
+        <!-- ============================================================
+        WHITE LABEL
+        ============================================================ -->
+        <section class="section" style="background:#F8F6F0;" aria-labelledby="wl-title">
             <div class="container">
                 <div class="reveal">
                     <span class="eyebrow">White Label</span>
-                    <h2 id="wl-title" class="section-title">Работаем под вашим брендом. Клиент не узнает о нас.</h2>
-                    <p class="text-gray" style="max-width:640px">Мы готовим гайды, чек-листы и презентации с вашим логотипом. Вы делитесь ценностью от своего имени. Вся коммуникация с клиентом ведётся от вашего лица. Мы — ваш теневой финансовый отдел, который повышает лояльность клиентов к вам.</p>
+                    <h2 id="wl-title" class="section-title section-title-center">Работаем под вашим брендом. Клиент не узнает о нас.</h2>
+                    <p class="section-subtitle">Мы готовим гайды, чек-листы и презентации с вашим логотипом. Вы делитесь ценностью от своего имени.</p>
                 </div>
 
-                <div class="wl-diagram reveal">
-                    <div class="wl-node you">
-                        <div class="wl-node-label">Видит клиент</div>
-                        <div class="wl-node-title">Вы, партнёр</div>
+                <div class="partner-wl reveal">
+                    <div class="partner-wl-node you">
+                        <div class="partner-wl-node-label">Видит клиент</div>
+                        <div class="partner-wl-node-title">Вы, партнёр</div>
                     </div>
-                    <span class="wl-arrow" aria-hidden="true">→</span>
-                    <div class="wl-node us">
-                        <div class="wl-node-label">Невидимо</div>
-                        <div class="wl-node-title">EZ Finance</div>
+                    <span class="partner-wl-arrow" aria-hidden="true">→</span>
+                    <div class="partner-wl-node us">
+                        <div class="partner-wl-node-label">Невидимо</div>
+                        <div class="partner-wl-node-title">EZ Finance</div>
                     </div>
-                    <span class="wl-arrow" aria-hidden="true">→</span>
-                    <div class="wl-node">
-                        <div class="wl-node-label">Результат</div>
-                        <div class="wl-node-title">Клиент доволен</div>
+                    <span class="partner-wl-arrow" aria-hidden="true">→</span>
+                    <div class="partner-wl-node">
+                        <div class="partner-wl-node-label">Результат</div>
+                        <div class="partner-wl-node-title">Клиент доволен</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CTA FORM -->
+        <!-- ============================================================
+        CTA ФОРМА
+        ============================================================ -->
         <section class="section" id="cta" aria-labelledby="cta-title">
             <div class="container">
                 <div class="form-section reveal">
@@ -199,10 +430,15 @@
                     <p class="text-gray text-gray-max">Один звонок — безопасно и без обязательств. Расскажем про комиссию, покажем механику на практике и ответим на все вопросы.</p>
 
                     <div class="form-wrap">
-                        <form data-validate novalidate>
+                        <form data-validate novalidate action="https://formsubmit.co/ezfinance@bk.ru" method="POST">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_subject" value="Заявка на партнерство с EZ Finance">
+                            <input type="hidden" name="_form_time" value="" class="form-time">
+
                             <div class="form-field">
                                 <label for="p-name">Имя *</label>
-                                <input type="text" id="p-name" name="name" required placeholder="Как к вам обращаться">
+                                <input type="text" id="p-name" name="name" required placeholder="Как к вам обращаться" autofocus>
                                 <span class="field-error"></span>
                             </div>
                             <div class="form-field">
@@ -226,17 +462,26 @@
                                 </select>
                                 <span class="field-error"></span>
                             </div>
-                            
-                            <!-- ===== HONEYPOT ПОЛЕ ===== -->
+
+                            <!-- HONEYPOT -->
                             <div class="form-field honeypot" style="display:none" aria-hidden="true">
                                 <label for="p-website">Веб-сайт</label>
                                 <input type="text" id="p-website" name="website" placeholder="Оставьте пустым" tabindex="-1" autocomplete="off">
                                 <span class="field-error"></span>
                             </div>
-                            
-                            <button type="submit" class="btn btn-block">Написать нам</button>
+
+                            <button type="submit" class="btn btn-block" id="submitBtn">
+                                <span class="btn-text">Написать нам</span>
+                                <span class="btn-loader" style="display:none;">
+                                    <svg viewBox="0 0 50 50" style="width:24px;height:24px;animation:spin 0.8s linear infinite;">
+                                        <circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="4" stroke-dasharray="90 150" stroke-linecap="round"/>
+                                    </svg>
+                                </span>
+                            </button>
+
                             <p class="form-note">Нажимая кнопку, вы соглашаетесь на <a href="consent.html">обработку персональных данных</a>.</p>
                         </form>
+
                         <div class="form-success">
                             <svg class="icon icon-lg" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="M10 16l4 4 8-9"/></svg>
                             <h3>Заявка принята</h3>
@@ -249,17 +494,26 @@
 
     </main>
 
+    <!-- ============================================================
+    ФУТЕР
+    ============================================================ -->
     <footer class="site-footer" id="contacts" role="contentinfo">
         <div class="container">
             <div class="footer-top">
                 <div class="footer-col">
-                    <a href="/" class="logo" aria-label="EZ Finance — Главная страница">EZ<span class="dot">•</span>FINANCE</a>
+                    <a href="/" class="logo" aria-label="EZ Finance — Главная страница">
+                        <span class="logo-icon">◆</span>
+                        EZ<span class="dot">•</span>FINANCE
+                    </a>
                     <p class="footer-desc">Финансовый директор на аутсорс. Управленческий учёт, контроль денег и стратегия для бизнеса.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Навигация</h4>
                     <ul>
                         <li><a href="/">Главная</a></li>
+                        <li><a href="/#services">Услуги</a></li>
+                        <li><a href="/#pricing">Цены</a></li>
+                        <li><a href="/materials">Материалы</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                 </div>
@@ -267,11 +521,26 @@
                     <h4>Контакты</h4>
                     <ul>
                         <li><a href="mailto:ezfinance@bk.ru">ezfinance@bk.ru</a></li>
+                        <li><a href="tel:+79000000000">+7 (900) 000-00-00</a></li>
                     </ul>
+                    <div class="footer-social">
+                        <a href="https://wa.me/79000000000" aria-label="WhatsApp">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#6B6B6B" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.89.55 3.66 1.5 5.16L2 22l5.16-1.5A9.98 9.98 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/><path d="M8.5 8.5c.2-.4.5-.6.8-.6.3 0 .6 0 .8.4l.6 1.2c.2.4.2.8-.1 1.1l-.3.3c-.2.2-.2.5 0 .8l.8 1.6c.2.4.6.6 1 .4l.5-.2c.3-.2.7-.2 1 .1l1.2.8c.4.3.6.7.6 1.2 0 .4-.2.8-.6 1-1.2.8-2.8 1.2-4.2.6-1.4-.6-2.6-1.8-3.2-3.2-.6-1.4-.2-3 .6-4.2z"/></svg>
+                        </a>
+                        <a href="https://t.me/ezfinance" aria-label="Telegram">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#6B6B6B" stroke-width="1.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        </a>
+                        <a href="tel:+79000000000" aria-label="Позвонить">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#6B6B6B" stroke-width="1.5"><path d="M22 16.9v3a2 2 0 0 1-2.2 2c-8.2-.8-14.9-7.5-15.7-15.7A2 2 0 0 1 6.1 2h3a2 2 0 0 1 2 1.7 23 23 0 0 0 1.3 5.4 2 2 0 0 1-.5 2.1l-1.4 1.4a16 16 0 0 0 4.8 4.8l1.4-1.4a2 2 0 0 1 2.1-.5 23 23 0 0 0 5.4 1.3A2 2 0 0 1 22 16.9z"/></svg>
+                        </a>
+                        <a href="mailto:ezfinance@bk.ru" aria-label="Email">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#6B6B6B" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <div class="footer-legal">
+                <div class="footer-legal" style="text-align:center;">
                     <p class="footer-legal-links">
                         <a href="privacy.html">Политика конфиденциальности</a> · 
                         <a href="terms.html">Пользовательское соглашение</a> · 
@@ -283,6 +552,6 @@
         </div>
     </footer>
 
-    <script src="js/main.js?v=1.0" defer></script>
+    <script src="js/main.js?v=2.0" defer></script>
 </body>
 </html>
