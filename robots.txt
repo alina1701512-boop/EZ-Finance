@@ -1,17 +1,10 @@
 User-agent: *
 Allow: /
-
-Disallow: /404.html
-Disallow: /css/
-Disallow: /js/
-Disallow: /images/
-Disallow: /partners
+Disallow: /send-form.php
+Disallow: /send-form-smtp.php
 
 Sitemap: https://ezfinance.ru/sitemap.xml
-
 Host: https://ezfinance.ru
-
-Crawl-delay: 1
 
 User-agent: Googlebot
 Allow: /

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EZ FINANCE | Партнёрская программа для бухгалтерских, налоговых и юридических компаний</title>
+<meta name="description" content="Партнёрская программа EZ Finance для бухгалтерских, налоговых и юридических компаний: рекомендуйте клиентов и получайте комиссию, пока клиент остаётся с нами.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://ezfinance.ru/partners/">
+<meta property="og:title" content="Партнёрская программа | EZ FINANCE">
+<meta property="og:description" content="Рекомендуйте клиентов бухгалтерских, налоговых и юридических компаний — получайте комиссию, пока клиент остаётся с EZ Finance.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ezfinance.ru/partners/">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    base: '#FDFCFB',
+                    navy: '#111827',
+                    gold: '#C5A059',
+                    'gold-light': '#D4AF37',
+                    muted: '#6B7280',
+                    accent: '#F3F4F6'
+                },
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                    heading: ['Montserrat', 'sans-serif']
+                }
+            }
+        }
+    }
+</script>
+<style>
+    body { background-color: #FDFCFB; color: #111827; }
+
+    .glass-nav {
+        background: rgba(253, 252, 251, 0.9);
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+    }
+
+    .premium-card {
+        background: #FFFFFF;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        transition: all 0.4s ease;
+    }
+    .premium-card:hover {
+        border-color: #C5A059;
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(197, 160, 89, 0.1);
+    }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.7s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    .nav-btn-gold {
+        background-color: transparent;
+        color: #111827 !important;
+        padding: 0.5rem 1rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        transition: color 0.3s ease;
+        box-shadow: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .nav-btn-gold:hover {
+        background-color: transparent;
+        color: #C5A059 !important;
+        box-shadow: none;
+        transform: none;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #FDFCFB; }
+    ::-webkit-scrollbar-thumb { background: #C5A059; }
+</style>
+</head>
+<body class="antialiased overflow-x-hidden font-sans">
+
+<nav id="navbar" class="fixed top-0 w-full z-[100] glass-nav transition-all duration-300 py-4">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+        <a href="/" class="flex items-center">
+            <div class="bg-navy px-3 py-1 rounded-sm mr-1">
+                <span class="font-heading font-black text-xl text-white tracking-tighter uppercase">EZ</span>
+            </div>
+            <span class="font-heading font-bold text-xl text-navy tracking-tighter uppercase">Finance</span>
+        </a>
+        <div class="hidden lg:flex items-center gap-2">
+            <a href="#who" class="nav-btn-gold">Кому подходит</a>
+            <a href="#how" class="nav-btn-gold">Как это работает</a>
+            <a href="#reward" class="nav-btn-gold">Вознаграждение</a>
+            <a href="#resources" class="nav-btn-gold">Ресурсы</a>
+            <a href="#faq" class="nav-btn-gold">Вопросы</a>
+        </div>
+        <div class="flex items-center gap-2">
+            <a href="#apply" class="hidden sm:inline-block px-8 py-3 bg-gold text-black text-[10px] font-black uppercase tracking-widest rounded-sm hover:bg-gold-light transition-all shadow-lg active:scale-95 !text-black">
+                Стать партнёром
+            </a>
+            <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 flex items-center justify-center text-navy text-xl" aria-label="Открыть меню" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-black/5 shadow-xl">
+        <div class="container mx-auto px-6 py-4 flex flex-col gap-1">
+            <a href="#who" class="nav-btn-gold !justify-start py-3">Кому подходит</a>
+            <a href="#how" class="nav-btn-gold !justify-start py-3">Как это работает</a>
+            <a href="#reward" class="nav-btn-gold !justify-start py-3">Вознаграждение</a>
+            <a href="#resources" class="nav-btn-gold !justify-start py-3">Ресурсы</a>
+            <a href="#faq" class="nav-btn-gold !justify-start py-3">Вопросы</a>
+            <a href="/" class="nav-btn-gold !justify-start py-3">Главная</a>
+            <a href="/materials/" class="nav-btn-gold !justify-start py-3">Материалы</a>
+        </div>
+    </div>
+</nav>
+
+<header class="relative min-h-[90vh] flex items-center pt-24 pb-12 lg:pt-28 bg-navy overflow-hidden">
+    <div class="container mx-auto px-6 text-center relative z-10">
+        <div class="reveal max-w-5xl mx-auto">
+            <span class="inline-block py-2 px-6 border border-gold rounded-full text-[9px] uppercase tracking-[4px] text-gold mb-6 bg-gold/5 font-bold">
+                Партнёрская программа
+            </span>
+            <h1 class="font-heading font-black text-4xl md:text-6xl lg:text-7xl leading-[1.15] uppercase mb-6 tracking-tighter text-white">
+                Рекомендуйте <span class="text-gold">финдиректора</span><br> клиентам, которых закрываете не полностью
+            </h1>
+            <p class="text-white/60 text-base md:text-xl font-light max-w-3xl mx-auto mb-8 leading-relaxed">
+                Для бухгалтерских, налоговых и юридических компаний. Клиент остаётся вашим — мы закрываем то, что вне вашего профиля, а вы получаете вознаграждение за рекомендацию.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                <a href="#apply" class="w-full sm:w-auto px-12 py-5 bg-gold text-black font-black text-[10px] uppercase tracking-[4px] rounded-sm shadow-xl hover:bg-gold-light hover:-translate-y-1 transition-all active:scale-95 !text-black leading-none">
+                    Стать партнёром
+                </a>
+                <a href="#how" class="w-full sm:w-auto px-12 py-5 border border-white/20 text-white font-black text-[10px] uppercase tracking-[4px] rounded-sm hover:border-gold hover:text-gold transition-all">
+                    Как это работает
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- КОМУ ПОДХОДИТ / БОЛЬ КЛИЕНТОВ -->
+<section id="who" class="py-24 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-col lg:flex-row gap-12 mb-20 reveal">
+            <div class="lg:w-1/2 text-left">
+                <h2 class="font-heading font-black text-4xl md:text-5xl uppercase mb-6 leading-none text-navy">Знакомая <br><span class="text-gold">ситуация?</span></h2>
+            </div>
+            <div class="lg:w-1/2 flex items-center">
+                <p class="text-muted text-lg font-light leading-relaxed border-l-4 border-gold pl-8">
+                    Вы ведёте бухгалтерию, налоги или юридическое сопровождение клиента. Но регулярно всплывают вопросы, которые формально не ваши — и клиент остаётся с ними один на один.
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 reveal">
+            <div class="premium-card p-12 rounded-xl border-l-[6px] border-red-500/20">
+                <h3 class="font-heading text-[11px] uppercase tracking-[4px] text-red-600 mb-10 font-bold">Что слышите от клиентов</h3>
+                <ul class="space-y-8">
+                    <li class="flex items-start gap-4">
+                        <div class="w-2 h-2 bg-red-500 rounded-full mt-1.5 flex-shrink-0"></div>
+                        <p class="text-sm text-navy/80 leading-relaxed">«Прибыль в отчёте есть, а денег на счёте нет — почему?»</p>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="w-2 h-2 bg-red-500 rounded-full mt-1.5 flex-shrink-0"></div>
+                        <p class="text-sm text-navy/80 leading-relaxed">«Какое направление в бизнесе реально приносит прибыль?»</p>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="w-2 h-2 bg-red-500 rounded-full mt-1.5 flex-shrink-0"></div>
+                        <p class="text-sm text-navy/80 leading-relaxed">«Нужна финансовая модель для банка или инвестора»</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="premium-card p-12 rounded-xl border-l-[6px] border-gold bg-gold/5">
+                <h3 class="font-heading text-[11px] uppercase tracking-[4px] text-gold mb-10 font-bold">Что делает EZ Finance</h3>
+                <ul class="space-y-8">
+                    <li class="flex items-start gap-4">
+                        <div class="w-2 h-2 bg-gold rounded-full mt-1.5 flex-shrink-0"></div>
+                        <p class="text-sm text-navy leading-relaxed font-medium">Управленческий учёт: P&amp;L, баланс и CashFlow для собственника</p>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="w-2 h-2 bg-gold rounded-full mt-1.5 flex-shrink-0"></div>
+                        <p class="text-sm text-navy leading-relaxed font-medium">Платёжный календарь и поиск точек роста прибыли</p>
+                    </li>
+                    <li class="flex items-start gap-4">
+                        <div class="w-2 h-2 bg-gold rounded-full mt-1.5 flex-shrink-0"></div>
+                        <p class="text-sm text-navy leading-relaxed font-medium">Финансовые модели и стратегия — по сути, финдиректор на аутсорсе</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <p class="text-center text-muted text-sm font-light max-w-2xl mx-auto mt-16 reveal">
+            Мы не трогаем вашу часть — первичку, налоги, юридическое сопровождение — и возвращаем клиента к вам по всем этим вопросам. Программа работает в обе стороны: своих клиентов с запросом на бухгалтерию, налоги или юридическое сопровождение мы направляем к партнёрам.
+        </p>
+    </div>
+</section>
+
+<!-- КАК ЭТО РАБОТАЕТ -->
+<section id="how" class="py-24 bg-accent/40">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-20 reveal">
+            <h2 class="font-heading font-black text-4xl uppercase mb-4 tracking-tight text-navy">Как это <span class="text-gold">работает</span></h2>
+            <p class="text-muted max-w-2xl mx-auto font-light leading-relaxed">Вы рекомендуете — мы продаём, внедряем и ведём клиента. Участие в переговорах не требуется.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 reveal">
+            <div class="premium-card p-10 rounded-2xl flex flex-col h-full">
+                <span class="text-[9px] font-bold text-gold uppercase tracking-[3px] mb-6">01</span>
+                <h4 class="font-heading font-bold text-lg mb-4 text-navy uppercase tracking-tight">Передаёте контакт</h4>
+                <p class="text-sm text-muted leading-relaxed flex-grow">Коротко описываете запрос клиента — до первого контакта, чтобы сразу закрепить его за собой.</p>
+            </div>
+            <div class="premium-card p-10 rounded-2xl flex flex-col h-full">
+                <span class="text-[9px] font-bold text-gold uppercase tracking-[3px] mb-6">02</span>
+                <h4 class="font-heading font-bold text-lg mb-4 text-navy uppercase tracking-tight">Клиент закреплён</h4>
+                <p class="text-sm text-muted leading-relaxed flex-grow">Подтверждаем регистрацию в течение рабочего дня. С этого момента клиент закреплён за вами.</p>
+            </div>
+            <div class="premium-card p-10 rounded-2xl flex flex-col h-full">
+                <span class="text-[9px] font-bold text-gold uppercase tracking-[3px] mb-6">03</span>
+                <h4 class="font-heading font-bold text-lg mb-4 text-navy uppercase tracking-tight">Мы ведём сделку</h4>
+                <p class="text-sm text-muted leading-relaxed flex-grow">Диагностика, предложение и дальнейшее сопровождение — целиком на нашей стороне.</p>
+            </div>
+            <div class="premium-card p-10 rounded-2xl flex flex-col h-full">
+                <span class="text-[9px] font-bold text-gold uppercase tracking-[3px] mb-6">04</span>
+                <h4 class="font-heading font-bold text-lg mb-4 text-navy uppercase tracking-tight">Вы получаете доход</h4>
+                <p class="text-sm text-muted leading-relaxed flex-grow">Вознаграждение — пока клиент остаётся с нами, а не разово в момент сделки.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ВОЗНАГРАЖДЕНИЕ (без конкретных цифр) -->
+<section id="reward" class="py-24 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-20 reveal">
+            <h2 class="font-heading font-black text-4xl uppercase mb-4 tracking-tight text-navy">Как устроено <span class="text-gold">вознаграждение</span></h2>
+            <p class="text-muted max-w-2xl mx-auto font-light leading-relaxed">Гибридная модель: понятный бонус на старте и растущий доход за клиентов, которые остаются с нами надолго.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+            <div class="premium-card p-10 rounded-2xl text-center">
+                <i class="fa-solid fa-handshake text-gold text-3xl mb-6"></i>
+                <h4 class="font-heading font-bold text-base mb-4 text-navy uppercase tracking-tight">Вознаграждение за старт</h4>
+                <p class="text-sm text-muted leading-relaxed">За каждого клиента, который начал работу с диагностики. Выплачивается сразу после оплаты — независимо от дальнейших решений клиента.</p>
+            </div>
+            <div class="premium-card p-10 rounded-2xl text-center border-gold/40">
+                <i class="fa-solid fa-arrow-trend-up text-gold text-3xl mb-6"></i>
+                <h4 class="font-heading font-bold text-base mb-4 text-navy uppercase tracking-tight">Ежемесячная доля</h4>
+                <p class="text-sm text-muted leading-relaxed">Процент от каждого платежа клиента, пока он остаётся на сопровождении — без ограничения по сроку.</p>
+            </div>
+            <div class="premium-card p-10 rounded-2xl text-center">
+                <i class="fa-solid fa-shield-heart text-gold text-3xl mb-6"></i>
+                <h4 class="font-heading font-bold text-base mb-4 text-navy uppercase tracking-tight">Клиент закреплён за вами</h4>
+                <p class="text-sm text-muted leading-relaxed">Приоритетное право на клиента, прозрачный статус по сделке и ежемесячный отчёт по начислениям.</p>
+            </div>
+        </div>
+        <p class="text-center text-muted text-sm font-light max-w-xl mx-auto mt-14 reveal">
+            Точные ставки и порядок выплат обсуждаем индивидуально при подключении к программе.
+        </p>
+    </div>
+</section>
+
+<!-- РЕСУРСЫ ДЛЯ ПАРТНЁРА -->
+<section id="resources" class="py-24 bg-accent/40">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+            <h2 class="font-heading font-black text-4xl uppercase mb-4 tracking-tight text-navy">Ресурсы для <span class="text-gold">партнёра</span></h2>
+            <p class="text-muted max-w-2xl mx-auto font-light leading-relaxed">Всё для того, чтобы предлагать клиентам пользу без лишних затрат времени.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 reveal">
+            <div class="premium-card p-10 rounded-2xl flex gap-6 items-start">
+                <i class="fa-solid fa-file-invoice text-gold text-2xl mt-1"></i>
+                <div>
+                    <h4 class="font-heading font-bold text-base mb-2 text-navy uppercase tracking-tight">Материалы для клиентов</h4>
+                    <p class="text-sm text-muted leading-relaxed">Шаблоны ОДДС, ОПиУ, баланса и расчёта маржинальности, гайд «5 признаков» — бесплатно и, при желании, под вашим брендом.</p>
+                </div>
+            </div>
+            <div class="premium-card p-10 rounded-2xl flex gap-6 items-start">
+                <i class="fa-solid fa-book-open text-gold text-2xl mt-1"></i>
+                <div>
+                    <h4 class="font-heading font-bold text-base mb-2 text-navy uppercase tracking-tight">Краткий бриф по услуге</h4>
+                    <p class="text-sm text-muted leading-relaxed">Чтобы быстро и понятно объяснить клиенту суть управленческого учёта и финансового сопровождения.</p>
+                </div>
+            </div>
+            <div class="premium-card p-10 rounded-2xl flex gap-6 items-start">
+                <i class="fa-solid fa-headset text-gold text-2xl mt-1"></i>
+                <div>
+                    <h4 class="font-heading font-bold text-base mb-2 text-navy uppercase tracking-tight">Личный контакт</h4>
+                    <p class="text-sm text-muted leading-relaxed">Персональный контакт со стороны EZ Finance для оперативных вопросов по сделкам.</p>
+                </div>
+            </div>
+            <div class="premium-card p-10 rounded-2xl flex gap-6 items-start">
+                <i class="fa-solid fa-arrows-rotate text-gold text-2xl mt-1"></i>
+                <div>
+                    <h4 class="font-heading font-bold text-base mb-2 text-navy uppercase tracking-tight">Встречные рекомендации</h4>
+                    <p class="text-sm text-muted leading-relaxed">Наших клиентов с запросом на бухгалтерию, налоги или юридическое сопровождение направляем к партнёрам.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- КЕЙС -->
+<section class="py-24 bg-navy relative overflow-hidden">
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-4xl mx-auto text-center reveal">
+            <span class="inline-block py-2 px-6 border border-gold rounded-full text-[9px] uppercase tracking-[4px] text-gold mb-8 bg-gold/5 font-bold">
+                Из практики
+            </span>
+            <p class="text-white text-xl md:text-2xl font-light leading-relaxed italic mb-8">
+                «У клиента одного из наших партнёров бизнес рос, но рентабельность падала — причина была не видна. Мы подключились как внешний финдиректор: разобрали структуру себестоимости, выявили убыточные направления, настроили управленческий учёт и план-факт. Собственник впервые увидел реальную картину по деньгам.»
+            </p>
+            <p class="text-gold text-[10px] uppercase tracking-[4px] font-bold">Результат — заметный рост чистой прибыли за несколько месяцев</p>
+        </div>
+    </div>
+</section>
+
+<section id="faq" class="py-24 bg-white">
+    <div class="container mx-auto px-6 max-w-3xl">
+        <div class="text-center mb-16 reveal">
+            <h2 class="font-heading font-black text-4xl uppercase mb-4 tracking-tight text-navy">Частые <span class="text-gold">вопросы</span></h2>
+        </div>
+        <div class="flex flex-col gap-4 reveal">
+            <details class="premium-card rounded-xl p-6 group">
+                <summary class="font-heading font-bold text-base text-navy cursor-pointer list-none flex justify-between items-center gap-4">
+                    Сколько стоит участие в партнёрской программе?
+                    <i class="fa-solid fa-chevron-down text-gold text-xs flex-shrink-0 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <p class="text-sm text-muted leading-relaxed mt-4">Ничего. Без оплаты, подписки и минимального объёма передаваемых клиентов — это доход, а не статья расходов.</p>
+            </details>
+            <details class="premium-card rounded-xl p-6 group">
+                <summary class="font-heading font-bold text-base text-navy cursor-pointer list-none flex justify-between items-center gap-4">
+                    У меня уже есть похожий партнёр или банк — это проблема?
+                    <i class="fa-solid fa-chevron-down text-gold text-xs flex-shrink-0 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <p class="text-sm text-muted leading-relaxed mt-4">Нет, партнёрство с EZ Finance не эксклюзивно. Вы сами решаете, кому и когда предложить контакт.</p>
+            </details>
+            <details class="premium-card rounded-xl p-6 group">
+                <summary class="font-heading font-bold text-base text-navy cursor-pointer list-none flex justify-between items-center gap-4">
+                    Подходит ли это бухгалтерам, которые не хотят расширять штат?
+                    <i class="fa-solid fa-chevron-down text-gold text-xs flex-shrink-0 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <p class="text-sm text-muted leading-relaxed mt-4">Да, программа рассчитана именно на это: дополнительный доход без найма новых людей и новой экспертизы.</p>
+            </details>
+        </div>
+    </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Сколько стоит участие в партнёрской программе?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ничего. Без оплаты, подписки и минимального объёма передаваемых клиентов — это доход, а не статья расходов." }
+    },
+    {
+      "@type": "Question",
+      "name": "У меня уже есть похожий партнёр или банк — это проблема?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Нет, партнёрство с EZ Finance не эксклюзивно. Вы сами решаете, кому и когда предложить контакт." }
+    },
+    {
+      "@type": "Question",
+      "name": "Подходит ли это бухгалтерам, которые не хотят расширять штат?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Да, программа рассчитана именно на это: дополнительный доход без найма новых людей и новой экспертизы." }
+    }
+  ]
+}
+</script>
+
+<!-- ФОРМА ЗАЯВКИ -->
+<section id="apply" class="py-32 bg-base">
+    <div class="container mx-auto px-6 max-w-3xl text-center reveal">
+        <h2 class="font-heading font-black text-5xl uppercase mb-6 tracking-tight text-navy">Стать <span class="text-gold">партнёром</span></h2>
+        <p class="text-muted text-lg font-light mb-16 leading-relaxed italic">Расскажем об условиях за пару минут и подключим вас к программе.</p>
+        <form id="partnerForm" class="flex flex-col gap-8 bg-white p-10 rounded-2xl shadow-xl border border-black/5">
+            <input type="hidden" name="form_type" value="partner">
+            <input type="hidden" name="page_url" value="ezfinance.ru/partners/">
+            <input type="text" name="website" style="position:absolute; left:-9999px;" tabindex="-1" autocomplete="off">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="relative">
+                    <input type="text" name="name" placeholder="ВАШЕ ИМЯ" required
+                        class="w-full bg-accent/50 border-b-2 border-black/5 py-5 px-6 rounded-sm text-navy focus:outline-none focus:border-gold transition-all placeholder:text-muted/60 uppercase font-bold text-[10px] tracking-widest">
+                </div>
+                <div class="relative">
+                    <input type="text" name="company" placeholder="КОМПАНИЯ"
+                        class="w-full bg-accent/50 border-b-2 border-black/5 py-5 px-6 rounded-sm text-navy focus:outline-none focus:border-gold transition-all placeholder:text-muted/60 uppercase font-bold text-[10px] tracking-widest">
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="relative">
+                    <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required
+                        class="w-full bg-accent/50 border-b-2 border-black/5 py-5 px-6 rounded-sm text-navy focus:outline-none focus:border-gold transition-all placeholder:text-muted/60 uppercase font-bold text-[10px] tracking-widest">
+                </div>
+                <div class="relative">
+                    <input type="email" name="email" placeholder="ВАШ EMAIL" required
+                        class="w-full bg-accent/50 border-b-2 border-black/5 py-5 px-6 rounded-sm text-navy focus:outline-none focus:border-gold transition-all placeholder:text-muted/60 uppercase font-bold text-[10px] tracking-widest">
+                </div>
+            </div>
+            <div class="text-left flex flex-col gap-4 border-t border-black/5 pt-6">
+                <label class="flex items-start gap-3">
+                    <input type="checkbox" name="consent" required class="mt-1 accent-[#C5A059] w-4 h-4 flex-shrink-0">
+                    <span class="text-xs text-muted leading-relaxed">Даю согласие на обработку персональных данных в соответствии с <a href="/privacy/" class="underline hover:text-gold">Политикой конфиденциальности</a></span>
+                </label>
+                <label class="flex items-start gap-3">
+                    <input type="checkbox" name="marketing_consent" class="mt-1 accent-[#C5A059] w-4 h-4 flex-shrink-0">
+                    <span class="text-xs text-muted leading-relaxed">Хочу получать материалы и предложения от EZ Finance на email</span>
+                </label>
+            </div>
+            <button type="submit" class="mt-4 px-20 py-7 bg-gold text-black font-black text-xs uppercase tracking-[5px] rounded-sm hover:bg-gold-light transition-all shadow-xl active:scale-95 !text-black">
+                Отправить заявку
+            </button>
+        </form>
+    </div>
+</section>
+
+<footer class="py-20 bg-navy text-white">
+    <div class="container mx-auto px-6 flex flex-col items-center">
+        <div class="font-heading font-black text-2xl uppercase tracking-tighter mb-10">
+            <span class="text-white">EZ</span><span class="text-gold">Finance</span>
+        </div>
+        <div class="flex gap-8 mb-10 text-[11px] uppercase tracking-widest font-bold">
+            <a href="/" class="text-white/50 hover:text-gold transition-all">Главная</a>
+            <a href="/partners/" class="text-white/50 hover:text-gold transition-all">Партнёрам</a>
+            <a href="/materials/" class="text-white/50 hover:text-gold transition-all">Материалы</a>
+            <a href="/#contact" class="text-white/50 hover:text-gold transition-all">Контакты</a>
+        </div>
+        <div class="flex gap-12 mb-12">
+            <a href="https://t.me/ezfinance_info" target="_blank" class="text-white/40 hover:text-gold transition-all text-2xl"><i class="fa-brands fa-telegram"></i></a>
+            <a href="https://wa.me/79172453543" target="_blank" class="text-white/40 hover:text-gold transition-all text-2xl"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="tel:+79172453543" class="text-white/40 hover:text-gold transition-all text-2xl"><i class="fa-solid fa-phone"></i></a>
+            <a href="mailto:info@ezfinance.ru" class="text-white/40 hover:text-gold transition-all text-2xl"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <p class="text-[8px] uppercase tracking-[5px] text-white/20 font-bold text-center">© 2026 EZ FINANCE. ВСЕ ПРАВА ЗАЩИЩЕНЫ.</p>
+    </div>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', String(!isOpen));
+            mobileMenuBtn.innerHTML = isOpen ? '<i class="fa-solid fa-bars"></i>' : '<i class="fa-solid fa-xmark"></i>';
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            });
+        });
+    }
+
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            nav.style.padding = "0.5rem 0";
+            nav.style.boxShadow = "0 10px 30px rgba(0,0,0,0.05)";
+        } else {
+            nav.style.padding = "1.25rem 0";
+            nav.style.boxShadow = "none";
+        }
+    });
+
+    document.getElementById('partnerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button');
+        const originalText = btn.innerText;
+        btn.innerText = "ОТПРАВЛЯЕМ...";
+        fetch("/send-form.php", {
+            method: "POST",
+            body: new FormData(this),
+            headers: {'Accept': 'application/json'}
+        }).then(response => {
+            if (response.ok) {
+                btn.innerText = "ЗАЯВКА ПРИНЯТА";
+                btn.style.background = "#059669";
+                btn.style.color = "#FFFFFF";
+                this.reset();
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.background = "#C5A059";
+                    btn.style.color = "#000000";
+                }, 5000);
+            }
+        });
+    });
+</script>
+</body>
+</html>
