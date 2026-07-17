@@ -1,0 +1,32 @@
+name: Deploy to Timeweb Hosting
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: FTP Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to hosting via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # Каталог на хостинге, куда деплоим — обычно public_html.
+          # Если у вас другой путь, поменяйте ниже.
+          server-dir: /public_html/
+          # send-form.php на хостинге содержит настоящий пароль от почты —
+          # эта строка защищает его от перезаписи заглушкой из репозитория.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            send-form.php
