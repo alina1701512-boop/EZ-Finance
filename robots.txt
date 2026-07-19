@@ -2,6 +2,8 @@ User-agent: *
 Allow: /
 Disallow: /send-form.php
 Disallow: /send-form-smtp.php
+Disallow: /unsubscribe.php
+Disallow: /unsubscribe/
 
 Sitemap: https://ezfinance.ru/sitemap.xml
 Host: https://ezfinance.ru

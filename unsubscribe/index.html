@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Отписка от рассылки</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #F5F6F8;
+        font-family: 'Inter', Arial, sans-serif;
+        padding: 24px;
+    }
+    .card {
+        background: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 5px 24px rgba(27, 54, 74, 0.08);
+        max-width: 440px;
+        width: 100%;
+        padding: 40px 36px;
+        text-align: center;
+    }
+    .logo {
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 28px;
+    }
+    .logo-mark {
+        background: #111827;
+        color: #ffffff;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 800;
+        font-size: 13px;
+        padding: 5px 8px;
+        border-radius: 3px;
+        letter-spacing: 0.5px;
+    }
+    .logo-text {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        color: #111827;
+        margin-left: 6px;
+    }
+    h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        color: #111827;
+        margin: 0 0 12px 0;
+    }
+    p {
+        font-size: 14px;
+        line-height: 22px;
+        color: #4B5563;
+        margin: 0 0 20px 0;
+    }
+    .email-display {
+        font-size: 14px;
+        color: #111827;
+        font-weight: 700;
+        background: #F8FAFC;
+        border-radius: 6px;
+        padding: 10px 14px;
+        margin-bottom: 20px;
+        word-break: break-all;
+    }
+    textarea {
+        width: 100%;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        padding: 12px 14px;
+        font-family: 'Inter', Arial, sans-serif;
+        font-size: 14px;
+        color: #111827;
+        resize: vertical;
+        margin-bottom: 20px;
+        min-height: 80px;
+    }
+    textarea:focus {
+        outline: none;
+        border-color: #C5A059;
+    }
+    button {
+        width: 100%;
+        background: #111827;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        padding: 14px 20px;
+        font-family: 'Inter', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+    button:hover {
+        background: #1f2937;
+    }
+    button:disabled {
+        background: #9CA3AF;
+        cursor: not-allowed;
+    }
+    .error-box {
+        background: #FEF2F2;
+        border: 1px solid #FCA5A5;
+        color: #B91C1C;
+        border-radius: 8px;
+        padding: 14px 16px;
+        font-size: 13px;
+        text-align: left;
+        margin-bottom: 8px;
+    }
+    .success-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: #ECFDF5;
+        color: #059669;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px auto;
+        font-size: 26px;
+    }
+    .hidden { display: none; }
+    .footer-note {
+        font-size: 11px;
+        color: #9CA3AF;
+        margin-top: 24px;
+    }
+</style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="logo">
+            <span class="logo-mark">EZ</span><span class="logo-text">Finance</span>
+        </div>
+
+        <div id="formState">
+            <h1>Отписка от рассылки</h1>
+            <p id="emailIntro">Укажите, пожалуйста, причину отписки (необязательно) — это поможет нам делать рассылку лучше.</p>
+            <div class="email-display" id="emailDisplay" style="display:none;"></div>
+
+            <div class="error-box hidden" id="errorBox"></div>
+
+            <form id="unsubForm">
+                <textarea name="reason" id="reasonField" placeholder="Почему вы решили отписаться? (необязательно)"></textarea>
+                <button type="submit" id="submitBtn">Отписаться</button>
+            </form>
+        </div>
+
+        <div id="successState" class="hidden">
+            <div class="success-icon">✓</div>
+            <h1>Вы отписаны</h1>
+            <p>Больше писем от EZ Finance на этот адрес приходить не будет. Спасибо, что были с нами.</p>
+        </div>
+
+        <p class="footer-note">EZ Finance · info@ezfinance.ru</p>
+    </div>
+
+<script>
+(function () {
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get('email') || '';
+    const token = params.get('token') || params.get('id') || '';
+
+    const emailDisplay = document.getElementById('emailDisplay');
+    const emailIntro = document.getElementById('emailIntro');
+    const errorBox = document.getElementById('errorBox');
+    const form = document.getElementById('unsubForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (email) {
+        emailDisplay.textContent = email;
+        emailDisplay.style.display = 'block';
+    }
+
+    if (!email && !token) {
+        errorBox.textContent = 'Ссылка неполная — не указан email или идентификатор. Если вы перешли по ссылке из письма, попробуйте открыть её ещё раз или напишите нам на info@ezfinance.ru.';
+        errorBox.classList.remove('hidden');
+        emailIntro.classList.add('hidden');
+        submitBtn.disabled = true;
+    }
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Отправляем...';
+
+        const fd = new FormData();
+        fd.append('email', email);
+        fd.append('token', token);
+        fd.append('reason', document.getElementById('reasonField').value.trim());
+        fd.append('page_url', window.location.href);
+
+        fetch('/unsubscribe.php', {
+            method: 'POST',
+            body: fd,
+            headers: { 'Accept': 'application/json' }
+        }).then(function (res) {
+            return res.json().catch(function () { return { ok: res.ok }; });
+        }).then(function (data) {
+            if (data.ok) {
+                document.getElementById('formState').classList.add('hidden');
+                document.getElementById('successState').classList.remove('hidden');
+            } else {
+                errorBox.textContent = 'Не получилось отписаться автоматически. Напишите нам на info@ezfinance.ru — отпишем вручную.';
+                errorBox.classList.remove('hidden');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Отписаться';
+            }
+        }).catch(function () {
+            errorBox.textContent = 'Не получилось отписаться автоматически. Напишите нам на info@ezfinance.ru — отпишем вручную.';
+            errorBox.classList.remove('hidden');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Отписаться';
+        });
+    });
+})();
+</script>
+
+</body>
+</html>
