@@ -513,6 +513,7 @@
             headers: {'Accept': 'application/json'}
         }).then(response => {
             if (response.ok) {
+                if (typeof ym === 'function') { ym(110812452, 'reachGoal', 'forma_otpravlena', {form_type: 'partner'}); }
                 btn.innerText = "ЗАЯВКА ПРИНЯТА";
                 btn.style.background = "#059669";
                 btn.style.color = "#FFFFFF";
@@ -525,6 +526,47 @@
             }
         });
     });
+
+    /* ===== Аналитика: клики по контактам, скролл, навигация по разделам ===== */
+    (function () {
+        var PAGE = 'partnery';
+        function goal(name, params) {
+            if (typeof ym === 'function') { ym(110812452, 'reachGoal', name, params || {}); }
+        }
+
+        document.querySelectorAll('a[href^="tel:"]').forEach(function (el) {
+            el.addEventListener('click', function () { goal('zvonok', {page: PAGE}); });
+        });
+        document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function (el) {
+            el.addEventListener('click', function () { goal('whatsapp', {page: PAGE}); });
+        });
+        document.querySelectorAll('a[href^="https://t.me/"]').forEach(function (el) {
+            el.addEventListener('click', function () { goal('telegram', {page: PAGE}); });
+        });
+        document.querySelectorAll('a[href^="mailto:"]').forEach(function (el) {
+            el.addEventListener('click', function () { goal('email_klik', {page: PAGE}); });
+        });
+
+        document.querySelectorAll('#faq details').forEach(function (el) {
+            el.addEventListener('toggle', function () {
+                if (el.open) { goal('klik_faq', {page: PAGE}); }
+            });
+        });
+
+        var sectionMap = {'#how': 'kak_rabotaet', '#reward': 'voznagrazhdenie', '#resources': 'resursy'};
+        Object.keys(sectionMap).forEach(function (href) {
+            document.querySelectorAll('a[href="' + href + '"]').forEach(function (el) {
+                el.addEventListener('click', function () { goal('nav_razdel', {section: sectionMap[href], page: PAGE}); });
+            });
+        });
+
+        var scrollFired = {50: false, 90: false};
+        window.addEventListener('scroll', function () {
+            var scrolled = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
+            if (scrolled >= 50 && !scrollFired[50]) { scrollFired[50] = true; goal('scroll_50', {page: PAGE}); }
+            if (scrolled >= 90 && !scrollFired[90]) { scrollFired[90] = true; goal('scroll_90', {page: PAGE}); }
+        }, {passive: true});
+    })();
 </script>
 </body>
 </html>

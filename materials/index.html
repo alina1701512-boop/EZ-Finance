@@ -513,6 +513,7 @@
             chips.forEach((c) => c.classList.remove('is-active'));
             chip.classList.add('is-active');
             const cat = chip.dataset.filter;
+            if (typeof ym === 'function' && cat !== 'all') { ym(110812452, 'reachGoal', 'filter_material', {category: cat}); }
             cards.forEach((card) => {
                 card.style.display = (cat === 'all' || card.dataset.category === cat) ? '' : 'none';
             });
@@ -528,6 +529,7 @@
             method: "POST", body: new FormData(this), headers: {'Accept': 'application/json'}
         }).then(response => {
             if (response.ok) {
+                if (typeof ym === 'function') { ym(110812452, 'reachGoal', 'forma_otpravlena', {form_type: 'audit_materials'}); }
                 btn.innerText = "ЗАПРОС ПРИНЯТ";
                 btn.style.background = "#059669"; btn.style.color = "#FFFFFF";
                 this.reset();
@@ -545,6 +547,7 @@
             method: "POST", body: new FormData(this), headers: {'Accept': 'application/json'}
         }).then(response => {
             if (response.ok) {
+                if (typeof ym === 'function') { ym(110812452, 'reachGoal', 'forma_otpravlena', {form_type: 'newsletter'}); }
                 btn.innerText = "ГОТОВО";
                 this.reset();
                 setTimeout(() => { btn.innerText = originalText; }, 4000);
@@ -575,6 +578,8 @@
         btn.addEventListener('click', () => {
             const wrap = btn.closest('.article-capture');
             const form = wrap.querySelector('.article-form');
+            const articleTitle = wrap.dataset.article || '';
+            if (typeof ym === 'function') { ym(110812452, 'reachGoal', 'klik_statya', {article: articleTitle}); }
             btn.classList.add('hidden');
             form.classList.remove('hidden');
             form.querySelector('input[type="email"]').focus();
@@ -593,6 +598,7 @@
                 method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' }
             }).then((response) => {
                 if (response.ok) {
+                    if (typeof ym === 'function') { ym(110812452, 'reachGoal', 'forma_otpravlena', {form_type: 'article_request', article: wrap.dataset.article || ''}); }
                     this.classList.add('hidden');
                     successMsg.classList.remove('hidden');
                 } else {
@@ -601,6 +607,34 @@
             }).catch(() => { submitBtn.disabled = false; });
         });
     });
+
+    /* ===== Аналитика: клики по контактам и скролл ===== */
+    (function () {
+        var PAGE = 'materialy';
+        function goal(name, params) {
+            if (typeof ym === 'function') { ym(110812452, 'reachGoal', name, params || {}); }
+        }
+
+        document.querySelectorAll('a[href^="tel:"]').forEach(function (el) {
+            el.addEventListener('click', function () { goal('zvonok', {page: PAGE}); });
+        });
+        document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function (el) {
+            el.addEventListener('click', function () { goal('whatsapp', {page: PAGE}); });
+        });
+        document.querySelectorAll('a[href^="https://t.me/"]').forEach(function (el) {
+            el.addEventListener('click', function () { goal('telegram', {page: PAGE}); });
+        });
+        document.querySelectorAll('a[href^="mailto:"]').forEach(function (el) {
+            el.addEventListener('click', function () { goal('email_klik', {page: PAGE}); });
+        });
+
+        var scrollFired = {50: false, 90: false};
+        window.addEventListener('scroll', function () {
+            var scrolled = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
+            if (scrolled >= 50 && !scrollFired[50]) { scrollFired[50] = true; goal('scroll_50', {page: PAGE}); }
+            if (scrolled >= 90 && !scrollFired[90]) { scrollFired[90] = true; goal('scroll_90', {page: PAGE}); }
+        }, {passive: true});
+    })();
 </script>
 </body>
 </html>

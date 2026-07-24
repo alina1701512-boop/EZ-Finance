@@ -164,7 +164,7 @@
                 согласно лучшим практикам рынка.
             </p>
             <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-12 lg:mb-16">
-                <a href="#contact" class="w-full sm:w-auto px-12 py-5 bg-gold text-black font-black text-[10px] uppercase tracking-[4px] rounded-sm shadow-xl hover:bg-gold-light hover:-translate-y-1 transition-all active:scale-95 !text-black leading-none">
+                <a href="#contact" id="heroCta" class="w-full sm:w-auto px-12 py-5 bg-gold text-black font-black text-[10px] uppercase tracking-[4px] rounded-sm shadow-xl hover:bg-gold-light hover:-translate-y-1 transition-all active:scale-95 !text-black leading-none">
                     Получить финансовый аудит
                 </a>
             </div>
@@ -535,6 +535,7 @@
             headers: {'Accept': 'application/json'}
         }).then(response => {
             if (response.ok) {
+                if (typeof ym === 'function') { ym(110812452, 'reachGoal', 'forma_otpravlena', {form_type: 'audit_home'}); }
                 btn.innerText = "ЗАПРОС ПРИНЯТ";
                 btn.style.background = "#059669";
                 btn.style.color = "#FFFFFF";
@@ -547,7 +548,45 @@
             }
         });
     });
+
+    /* ===== Аналитика: клики по контактам, скролл, FAQ, hero CTA ===== */
+    (function () {
+        var PAGE = 'glavnaya';
+        function goal(name, params) {
+            if (typeof ym === 'function') { ym(110812452, 'reachGoal', name, params || {}); }
+        }
+
+        document.querySelectorAll('a[href^="tel:"]').forEach(function (el) {
+            el.addEventListener('click', function () { goal('zvonok', {page: PAGE}); });
+        });
+        document.querySelectorAll('a[href^="https://wa.me/"]').forEach(function (el) {
+            el.addEventListener('click', function () { goal('whatsapp', {page: PAGE}); });
+        });
+        document.querySelectorAll('a[href^="https://t.me/"]').forEach(function (el) {
+            el.addEventListener('click', function () { goal('telegram', {page: PAGE}); });
+        });
+        document.querySelectorAll('a[href^="mailto:"]').forEach(function (el) {
+            el.addEventListener('click', function () { goal('email_klik', {page: PAGE}); });
+        });
+
+        var heroCta = document.getElementById('heroCta');
+        if (heroCta) {
+            heroCta.addEventListener('click', function () { goal('klik_geroy_cta', {page: PAGE}); });
+        }
+
+        document.querySelectorAll('#faq details').forEach(function (el) {
+            el.addEventListener('toggle', function () {
+                if (el.open) { goal('klik_faq', {page: PAGE}); }
+            });
+        });
+
+        var scrollFired = {50: false, 90: false};
+        window.addEventListener('scroll', function () {
+            var scrolled = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
+            if (scrolled >= 50 && !scrollFired[50]) { scrollFired[50] = true; goal('scroll_50', {page: PAGE}); }
+            if (scrolled >= 90 && !scrollFired[90]) { scrollFired[90] = true; goal('scroll_90', {page: PAGE}); }
+        }, {passive: true});
+    })();
 </script>
 </body>
 </html>
-<!-- verify deploy path fix -->
