@@ -40,6 +40,20 @@
     </url>
 
     <url>
+        <loc>https://ezfinance.ru/blog/5-pokazateley-dlya-sobstvennika/</loc>
+        <lastmod>2026-07-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://ezfinance.ru/blog/10-priznakov-rosta-biznesa/</loc>
+        <lastmod>2026-07-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
         <loc>https://ezfinance.ru/privacy/</loc>
         <lastmod>2026-07-15</lastmod>
         <changefreq>yearly</changefreq>
